@@ -1,0 +1,30 @@
+-- TEMA 1
+select cliente.nombre, count(factura.*) as cantidad_facturas from cliente inner join factura on cliente.id = factura.cliente_id group by cliente.nombre order by cantidad_facturas desc;
+
+-- TEMA 2
+select c.nombre, sum(p.precio * fd.cantidad) as total_gastado 
+from cliente as c inner join factura as f on c.id = f.cliente_id 
+inner join factura_detalle as fd on f.id = fd.factura_id 
+inner join producto as p on p.id = fd.producto_id 
+group by c.nombre order by total_gastado desc;
+
+-- TEMA 3
+select m.nombre, count(f.moneda_id) as cantidad from moneda as m inner join factura as f on f.moneda_id = m.id group by m.nombre order by cantidad desc;
+
+-- TEMA 4
+select p.nombre, count(prod.proveedor_id) as cantidad_productos from proveedor as p inner join producto as prod on p.id = prod.proveedor_id group by p.nombre order by cantidad_productos desc;
+
+-- TEMA 5
+select p.nombre, sum(fd.cantidad) as cantidad from producto as p inner join factura_detalle as fd on p.id = fd.producto_id group by p.nombre order by cantidad desc;
+
+-- TEMA 6
+select p.nombre, sum(fd.cantidad) as cantidad from producto as p inner join factura_detalle as fd on p.id = fd.producto_id group by p.nombre order by cantidad asc;
+
+-- TEMA 7
+select f.fecha_emision, c.nombre, c.apellido, p.nombre as producto, fd.cantidad, ft.nombre as tipo_factura from cliente as c inner join factura as f on f.cliente_id = c.id inner join factura_tipo as ft on f.factura_tipo_id = ft.id inner join factura_detalle as fd on fd.factura_id = f.id inner join producto as p on p.id = fd.producto_id where factura_id = 1;
+
+-- TEMA 8
+select f.id, sum(p.precio * fd.cantidad) as total from factura as f inner join factura_detalle as fd on f.id = fd.factura_id inner join producto as p on p.id = fd.producto_id group by f.id order by total desc;
+
+-- TEMA 9
+select f.id, sum(fd.cantidad * p.precio) as total, sum((fd.cantidad * p.precio) * 0.1) as iva from factura as f inner join factura_detalle as fd on f.id = fd.factura_id inner join producto as p on fd.producto_id = p.id group by f.id order by total desc

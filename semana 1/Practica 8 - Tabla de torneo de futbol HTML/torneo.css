@@ -1,0 +1,61 @@
+body {
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+#clubsTable {
+    margin: auto;
+    /* border-collapse:separate;     */
+    border-spacing: 0;
+    border: lightgrey 1px solid;
+    box-shadow: 2px 0 10px -2px #888;
+
+}
+
+#clubsTable thead {
+    color: gray;
+    font-size: 15px;
+}
+
+
+#clubsTable th {
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+#clubsTable td{
+    padding-right: 15px;
+    vertical-align: middle;
+    border-top: 1px solid lightgray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.clubsNumber{
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+.clubsName {
+    width: 300px;
+    text-align: left;
+}
+
+
+.clubsLogo{
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+#clubsTable tr:nth-child(2n + 2){
+    background-color: lightgray;
+}
+
+.win, .lost, .draw {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+

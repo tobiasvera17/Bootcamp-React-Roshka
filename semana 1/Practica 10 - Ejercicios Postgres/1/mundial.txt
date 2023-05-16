@@ -1,0 +1,17 @@
+create table grupo(id_grupo serial not null primary key, 
+				   nombre_grupo character(10) not null unique);
+				   
+create table equipo(id_equipo serial not null primary key, 
+					nombre_equipo character(50) not null unique, 
+				   	id_grupo int not null,
+				   	foreign key (id_grupo) references grupo(id_grupo));				   
+
+create table partido(id_partido serial NOT NULL, 
+					 fecha date NOT NULL, 
+					 fase character varying(30) NOT NULL, 
+					 id_equipo_uno integer NOT NULL, 
+					 id_equipo_dos integer NOT NULL, 
+					 goles_equipo_uno integer NOT NULL, 
+					 goles_equipo_dos integer NOT NULL,
+					 foreign key(id_equipo_uno) references equipo(id_equipo),
+					 foreign key(id_equipo_dos) references equipo(id_equipo));
