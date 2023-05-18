@@ -1,0 +1,17 @@
+#container {
+    height: 100%;
+}
+
+.textoBlanco {
+    background-color: whitesmoke;
+}
+
+.textoVerde {
+    background-color: rgb(140, 235, 148);
+}
+
+.sidebar {
+    background-color: lightgray;
+    min-height: 100vh;
+}
+
