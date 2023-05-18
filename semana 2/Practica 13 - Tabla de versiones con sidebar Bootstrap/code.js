@@ -108,7 +108,7 @@ const getInfo = () => {
     let tabla = `
     <div class="container-fluid" id="main-container">
         <div id="tabla-container">
-            <table class="table table-striped-columns table-hover">
+            <table class="table table-hover">
                 <thead>
                     <th>
                         <p>Versión</p>
