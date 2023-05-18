@@ -1,9 +1,10 @@
+const indices = ["Archivos", "Detalles", "Configuraciones"]
+
 const versiones = [
     ["1.0.0", "16/05/2023","Lorem ipsum dolor sit amet consectetur adipisicing elit. A nostrum earum, similique aliquid nulla minima repellendus iure, quo atque impedit cum accusamus exercitationem sint sit non, qui illo harum officiis?",["Archivo 1.0.0 - 0","Archivo 1.0.0 - 1"],["Texto de descripción para Archivo 1.0.0 - 0","Texto de descripción para Archivo 1.0.0 - 1"]],
     ["2.0.0", "20/05/2023","Lorem ipsum dolor sit amet consectetur adipisicing elit. A nostrum earum, similique aliquid nulla minima repellendus iure, quo atque impedit cum accusamus exercitationem sint sit non, qui illo harum officiis?",["Archivo 2.0.0 - 0","Archivo 2.0.0 - 1"],["Texto de descripción para Archivo 2.0.0 - 0","Texto de descripción para Archivo 2.0.0 - 1"]],
     ["2.0.1", "28/05/2023","Lorem ipsum dolor sit amet consectetur adipisicing elit. A nostrum earum, similique aliquid nulla minima repellendus iure, quo atque impedit cum accusamus exercitationem sint sit non, qui illo harum officiis?",["Archivo 2.0.1 - 0","Archivo 2.0.0 - 1","README.md"],["Texto de descripción para Archivo 2.0.1 - 0","Texto de descripción para Archivo 2.0.1 - 1","README file"]]]
 
-const indices = ["Archivos", "Detalles", "Configuraciones"]
 
 const archivosBlanco = [
     [
@@ -43,6 +44,7 @@ const archivosVerde = [
 
 
 const container = document.getElementById("container")
+
 const getInfo = () => {
     let sidebar = `
         <div class="flex-shrink-0 p-3 sidebar" style="width: 300px;">
@@ -156,6 +158,7 @@ const btnVerArchivos = document.querySelectorAll(".btnVerArchivos")
 const btnVerDetalles = document.querySelectorAll(".btnVerDetalles")
 const btnVerConf = document.querySelectorAll(".btnVerConf")
 const containerResult = document.getElementById("container-result")
+
 btnVerArchivos.forEach(btn => {
     containerResult.innerHTML = ""
     btn.addEventListener('click', function handleClick(event) {
@@ -180,21 +183,6 @@ btnVerDetalles.forEach(btn => {
         <ul>` 
         for(let i = 0; i<versiones[version][3].length; i ++){
             div += `<li>${versiones[version][4][i]}</li>`
-        }
-        div += `</ul>`
-        containerResult.innerHTML = div
-    })
-})
-
-btnVerDetalles.forEach(btn => {
-    containerResult.innerHTML = ""
-    btn.addEventListener('click', function handleClick(event) {
-        let version = Number(btn.classList[3].match(/\d+/g)[0])
-        let div = `<h3>Versión ${versiones[version][0]}</h3>
-        <h5>Detalles:</h5>
-        <ul>` 
-        for(let i = 0; i<versiones[version][4].length; i ++){
-            div += `<li><h6>${versiones[version][3][i]}</h6>${versiones[version][4][i]}</li>`
         }
         div += `</ul>`
         containerResult.innerHTML = div

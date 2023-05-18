@@ -11,7 +11,11 @@
 }
 
 .sidebar {
-    background-color: lightslategray;
+    background-color: lightgray;
     min-height: 100vh;
+}
+
+.table-hover tr:hover {
+    background-color: lightgray;
 }
 
