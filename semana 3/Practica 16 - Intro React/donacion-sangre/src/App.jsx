@@ -19,11 +19,26 @@ function App() {
 
   return (
     <>
-      {
-        keys.map((key, index) => {
-          return <Info data={peticion[key]} idContainer={index} />
-        })
-      }
+        <div id="container" className="container-lg p-0 m-0 d-flex flex-column">
+            
+          <div id="header-container" className="d-flex container-fluid text-center">
+              <div id="solicitudes-header">
+                  Solicitudes
+              </div>
+              <div id="mas-button-container">
+                  <button id="btn-agregarSolicitud" className="btn btn-link"><i className="bi bi-plus-square-fill"></i></button>
+              </div>
+          </div>
+
+          <div id="main-container" className="d-flex flex-column container-fluid align-items-center">
+              <div id="misSolicitudes-container" className="d-flex justify-content-center align-items-center">Mis solicitudes <input id="check-misSolicitudes" type="checkbox" /></div>
+                {
+                  keys.map((key, index) => {
+                    return <Info data={peticion[key]} idContainer={index} />
+                  })
+                }
+          </div>
+        </div>
     </>
   )
 }
