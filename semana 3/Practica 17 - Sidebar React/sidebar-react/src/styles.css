@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#sidebar-container {
+    background-color: lightgreen;
+    color: black;
+}
+
+#sidebar-container a{
+    color:black;
+    font-weight: unset;
+}
+
+#sidebar-container li{
+    text-align: start;
+    list-style-type: none;
+    cursor: pointer;
+    /* background-color: yellow; */
+}
+
+#sidebar-container ul{
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.ul-hijo li{
+    padding-left: 20px;
+}
