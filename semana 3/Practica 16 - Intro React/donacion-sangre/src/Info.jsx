@@ -66,7 +66,7 @@ function Info(props) {
                     </tbody>
                 </table>
             </div>
-            <div className="footer-info-container container-fluid text-center text-uppercase fw-bold">${props.data.solicitud}</div>
+            <div className="footer-info-container container-fluid text-center text-uppercase fw-bold">{props.data.solicitud}</div>
     </div>
     </>
     )
