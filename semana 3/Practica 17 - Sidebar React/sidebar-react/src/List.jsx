@@ -1,25 +1,46 @@
+import React from "react"
 import { useState } from "react"
 import Link from "./Link"
 
-function List(props) {
-    const [isActive, setIsActive] = useState(false);
-    
+function List({ index, item, indiceActivo, setIndiceActivo }) {
+    const { element, subElements } = item
+    const [subIndexActivo, setSubIndexActivo] = useState(null)
+
+    const active = (index == indiceActivo) ? true : false
+    const background = (active == true) ? 'bg-info bg-gradient' : ''
+    const color = (active == true) ? 'text-primary' : ''
+    const clase = (subElements.length > 0) ? background : color
+
     const handleClick = () => {
-        // 👇️ toggle
-        setIsActive(current => !current);
-      };
+        if (active == true) {
+            setIndiceActivo(null)
+            setSubIndexActivo(null)
+        } else {
+            setIndiceActivo(index)
+        }
+    }
 
     return (
-        <li key={props.index} onClick={handleClick}>
-            <p className="elemento-lista" style={{color: isActive ? 'red' : 'black'}}>{props.data.element}</p>
-            
-            <ul className="list-unstyled ps-0 ul-hijo" style={{display: isActive ? 'unset' : 'none',}}>
-                {
-                    props.data.subElements.map((item, index) => {
-                        return <Link data={item} index={index}/> 
-                    })
-                }
-            </ul>
+        <li >
+            <button className={'btn ' + clase} onClick={handleClick}>
+                {element}
+                {subElements.length > 0 && (<span className='bi bi-caret-down'></span>)}
+            </button>
+
+            {(subElements.length > 0 && active == true) && (
+                <ul>
+                    {subElements.map((item, index) =>
+                        <Link
+                            key={index}
+                            index={index}
+                            item={item}
+                            subIndexActivo={subIndexActivo}
+                            setSubIndexActivo={setSubIndexActivo} />
+                    )}
+                </ul>
+            )
+
+            }
         </li>
     )
 }

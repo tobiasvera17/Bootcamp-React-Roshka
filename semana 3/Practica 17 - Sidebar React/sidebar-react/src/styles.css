@@ -5,27 +5,19 @@
 }
 
 #sidebar-container {
-    background-color: lightgreen;
-    color: black;
-}
-
-#sidebar-container a{
-    color:black;
-    font-weight: unset;
-}
-
-#sidebar-container li{
-    text-align: start;
-    list-style-type: none;
-    cursor: pointer;
-    /* background-color: yellow; */
+    padding-top: 50px;
+    position: absolute;
+    top: 0;
+    left:0;
+    height: 100vh;
+    width: 280px;
+    background-color: lightskyblue;
 }
 
 #sidebar-container ul{
-    list-style-type: none;
-    cursor: pointer;
+    list-style: none;
 }
 
-.ul-hijo li{
-    padding-left: 20px;
+#sidebar-container li ul{
+    background-color: lightblue;
 }

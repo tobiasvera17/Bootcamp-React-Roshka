@@ -1,23 +1,23 @@
+import React from "react"
 import { useState } from "react"
 import List from './List'
-import Link from './Link'
-import './sidebar.css'
+
+
 function Sidebar(props){
+    const [indiceActivo, setIndiceActivo] = useState(null)
+
     return (
-        <div className="container" id="sidebar-container">
-            <ul className="list-unstyled ps-0">
-                {
-                    props.data.map((item, index) => {
-                        if(item.subElements.length > 0){
-                            return ( 
-                                <List data={item} index={index}/>
-                                )
-                            }
-                            else {
-                                return <Link data={item.element} index={index}/>
-                            }
-                        })
-                    }
+        <div id="sidebar-container">
+            <ul>
+                {props.data.map((item, index) =>
+                    <List 
+                    key={index} 
+                    index={index} 
+                    item={item} 
+                    indiceActivo={indiceActivo}
+                    setIndiceActivo={setIndiceActivo}
+                    />)
+                }
             </ul>
         </div>
     )

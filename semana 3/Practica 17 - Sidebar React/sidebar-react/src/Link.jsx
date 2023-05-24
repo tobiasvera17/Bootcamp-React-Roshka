@@ -1,16 +1,14 @@
-import { useState } from "react"
+import React from "react"
 
-function Link(props) {
-    const [isActive, setIsActive] = useState(false);
-    
+function Link({ item, index, subIndexActivo, setSubIndexActivo }) {
+    const active = (index == subIndexActivo) ? true : false
+    const color = (active == true )? 'text-primary' : ''
     const handleClick = () => {
-        // 👇️ toggle
-        setIsActive(current => !current);
-      };
-
+        setSubIndexActivo(index)
+    }
     return (
-        <li key={props.index} className="mb-1" onClick={handleClick}>
-            <a href="#" ><p className="elemento-lista" style={{color: isActive ? 'red' : 'black'}}>{props.data}</p></a>
+        <li key={index}>
+            <button className={'btn ' + color} onClick={handleClick}>{item}</button>
         </li>
     )
 }
