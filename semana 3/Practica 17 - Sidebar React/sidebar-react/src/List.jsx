@@ -17,6 +17,7 @@ function List({ index, item, indiceActivo, setIndiceActivo }) {
             setSubIndexActivo(null)
         } else {
             setIndiceActivo(index)
+            setSubIndexActivo(null)
         }
     }
 

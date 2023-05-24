@@ -7,7 +7,7 @@ function Link({ item, index, subIndexActivo, setSubIndexActivo }) {
         setSubIndexActivo(index)
     }
     return (
-        <li key={index}>
+        <li key={index} className="btn-hijo d-block">
             <button className={'btn ' + color} onClick={handleClick}>{item}</button>
         </li>
     )
