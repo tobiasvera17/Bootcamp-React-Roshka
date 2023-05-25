@@ -23,6 +23,7 @@ import BotonVacio from "./Componentes/Botones/BotonVacio";
 import BotonMasIzquierdaVacio from "./Componentes/Botones/BotonMasIzquierdaVacio";
 import BotonMasDerechaVacio from "./Componentes/Botones/BotonMasDerechaVacio";
 import Header from "./Componentes/Header";
+import Banner from "./Componentes/Banner";
 
 let elements = [
   [
@@ -105,35 +106,41 @@ function App() {
         <BotonNormal content="hola" />
         <BotonNormalSecundario content="hola" />
         <BotonNormalDisabled content="hola" />
-        <br/>
-        <BotonMasIzquierdaNormal content="hola"/>
-        <BotonMasIzquierdaSecundario content="hola"/>
-        <BotonMasIzquierdaDisabled content="hola"/>
-        <br/>
-        <BotonMasDerechaNormal content="hola"/>
-        <BotonMasDerechaSecundario content="hola"/>
-        <BotonMasDerechaDisabled content="hola"/>
-        <br/>
-        <BotonOutlined content="hola"/>
-        <BotonOutlinedSecundario content="hola"/>
-        <BotonOutlinedDisabled content="hola"/>
-        <br/>
-        <BotonMasIzquierdaOutlined content="hola"/>
-        <BotonMasIzquierdaOutlinedSecundario content="hola"/>
-        <BotonMasIzquierdaOutlinedDisabled content="hola"/>
-        <br/>
-        <BotonMasDerechaOutlined content="hola"/>
-        <BotonMasDerechaOutlinedSecundario content="hola"/>
-        <BotonMasDerechaOutlinedDisabled content="hola"/>
-        <br/>
-        <BotonVacio content={"hola"} bgcolor="transparent" color="#1155cc"/> 
-        <BotonVacio content={"hola"} bgcolor="transparent" textDecoration="underline" color="#1155cc"/>
-        <BotonMasDerechaVacio content="hola"/>
-        <BotonMasIzquierdaVacio content="hola"/>
+        <br />
+        <BotonMasIzquierdaNormal content="hola" />
+        <BotonMasIzquierdaSecundario content="hola" />
+        <BotonMasIzquierdaDisabled content="hola" />
+        <br />
+        <BotonMasDerechaNormal content="hola" />
+        <BotonMasDerechaSecundario content="hola" />
+        <BotonMasDerechaDisabled content="hola" />
+        <br />
+        <BotonOutlined content="hola" />
+        <BotonOutlinedSecundario content="hola" />
+        <BotonOutlinedDisabled content="hola" />
+        <br />
+        <BotonMasIzquierdaOutlined content="hola" />
+        <BotonMasIzquierdaOutlinedSecundario content="hola" />
+        <BotonMasIzquierdaOutlinedDisabled content="hola" />
+        <br />
+        <BotonMasDerechaOutlined content="hola" />
+        <BotonMasDerechaOutlinedSecundario content="hola" />
+        <BotonMasDerechaOutlinedDisabled content="hola" />
+        <br />
+        <BotonVacio content={"hola"} bgcolor="transparent" color="#1155cc" />
+        <BotonVacio
+          content={"hola"}
+          bgcolor="transparent"
+          textDecoration="underline"
+          color="#1155cc"
+        />
+        <BotonMasDerechaVacio content="hola" />
+        <BotonMasIzquierdaVacio content="hola" />
       </div>
-
-      <Header data={["item1","item2","item3","item4"]}/>
-      
+      <br/>
+      <Header data={["item1", "item2", "item3", "item4"]} />
+      <br/>
+      <Banner title="Work less, achieve more." text="Tempor amet duis irure tempor in adipisicing reprehenderit. Et tempor officia reprehenderit fugiat consequat nostrud. Et occaecat deserunt minim aute dolore est veniam veniam ullamco. Nostrud officia anim consectetur deserunt consectetur nostrud exercitation pariatur sunt commodo laboris nulla."/>
     </>
   );
 }

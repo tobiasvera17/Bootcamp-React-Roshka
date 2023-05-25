@@ -169,3 +169,25 @@
     align-items: center;
     justify-content: center;
 }
+
+.banner-container {
+    display: flex;
+    width: 80vh;
+    margin: auto;
+    background: linear-gradient(167.85deg, rgba(35, 174, 253, 0.7) 31.41%, rgba(2, 104, 206, 0.7) 83.74%, rgba(3, 28, 53, 0.7) 83.74%);
+}
+
+.title-container-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.body-container-banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
