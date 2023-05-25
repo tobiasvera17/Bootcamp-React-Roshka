@@ -8,7 +8,7 @@ import CardLinks from './CardLinks'
 
 const Card = (props) => {
   return (
-    <div className='container d-flex flex-column justify-content-start align-items-start container-card p-0 m-0 border rounded bg-light' id={'card-' + props.id}>
+    <div className='card-container container-sm d-flex flex-column justify-content-start align-items-start container-card p-0 m-0 border rounded bg-light' id={'card-' + props.id}>
         <div className='container-fluid p-2'>
             <CardImg imgSrc={props.imgSrc}/>
             <CardContent title={props.title} content={props.content}/>
