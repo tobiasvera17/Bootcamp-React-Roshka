@@ -22,6 +22,7 @@ import BotonMasDerechaOutlinedDisabled from "./Componentes/Botones/BotonMasDerec
 import BotonVacio from "./Componentes/Botones/BotonVacio";
 import BotonMasIzquierdaVacio from "./Componentes/Botones/BotonMasIzquierdaVacio";
 import BotonMasDerechaVacio from "./Componentes/Botones/BotonMasDerechaVacio";
+import Header from "./Componentes/Header";
 
 let elements = [
   [
@@ -130,6 +131,9 @@ function App() {
         <BotonMasDerechaVacio content="hola"/>
         <BotonMasIzquierdaVacio content="hola"/>
       </div>
+
+      <Header data={["item1","item2","item3","item4"]}/>
+      
     </>
   );
 }
