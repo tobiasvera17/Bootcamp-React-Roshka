@@ -15,3 +15,101 @@
 {
     max-width: 80%;
 }
+
+.BotonNormal {
+    padding:5px 25px;
+    border-radius: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: large;
+    color: white;
+    border: none;
+    background-color: #1155cc;
+    margin: 5px;
+    vertical-align: middle;
+}
+
+.BotonNormalSecundario {
+    padding:5px 25px;
+    border-radius: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: large;
+    color: white;
+    border: none;
+    background-color: #4285f4;
+    margin: 5px;
+}
+
+.BotonNormalDisabled {
+    padding:5px 25px;
+    border-radius: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: large;
+    color: black;
+    border: none;
+    background-color: #747775;
+    margin: 5px;
+    opacity: 50%;
+}
+
+.BotonOutlined {
+    padding:5px 25px;
+    border-radius: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: large;
+    color: #1155cc;
+    border: 1px solid #1155cc;;
+    background-color: white;
+    margin: 5px;
+    vertical-align: middle;
+}
+
+.BotonOutlinedSecundario {
+    padding:5px 25px;
+    border-radius: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: large;
+    color: #1155cc;
+    border: 1px solid #1155cc;
+    background-color: #d3e3fd;;
+    margin: 5px;
+    vertical-align: middle;
+}
+
+.BotonOutlinedDisabled {
+    padding:5px 25px;
+    border-radius: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: large;
+    color: #1155cc;
+    border: 1px solid #1155cc;
+    background-color: #d3e3fd;
+    margin: 5px;
+    vertical-align: middle;
+    opacity: 50%;
+}
+
+.BotonVacio {
+    padding:5px 25px;
+    border-radius: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: large;
+    color: #1155cc;
+    border: none;
+    background-color: none;
+    margin: 5px;
+    vertical-align: middle;
+}

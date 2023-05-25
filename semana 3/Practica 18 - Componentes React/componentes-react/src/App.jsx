@@ -1,6 +1,27 @@
 import DoubleAccordion from "./Componentes/DoubleAccordion";
 import Card from "./Componentes/Card";
 import MultiAccordion from "./Componentes/MultiAccordion";
+import BotonNormal from "./Componentes/Botones/BotonNormal";
+import BotonNormalSecundario from "./Componentes/Botones/BotonNormalSecundario";
+import BotonNormalDisabled from "./Componentes/Botones/BotonNormalDisabled";
+import BotonMasIzquierdaNormal from "./Componentes/Botones/BotonMasIzquierdaNormal";
+import BotonMasIzquierdaSecundario from "./Componentes/Botones/BotonMasIzquierdaSecundario";
+import BotonMasIzquierdaDisabled from "./Componentes/Botones/BotonMasIzquierdaDisabled";
+import BotonMasDerechaNormal from "./Componentes/Botones/BotonMasDerechaNormal";
+import BotonMasDerechaSecundario from "./Componentes/Botones/BotonMasDerechaSecundario";
+import BotonMasDerechaDisabled from "./Componentes/Botones/BotonMasDerechaDisabled";
+import BotonOutlined from "./Componentes/Botones/BotonOutlined";
+import BotonOutlinedSecundario from "./Componentes/Botones/BotonOutlinedSecundario";
+import BotonOutlinedDisabled from "./Componentes/Botones/BotonOutlinedDisabled";
+import BotonMasIzquierdaOutlined from "./Componentes/Botones/BotonMasIzquierdaOutlined";
+import BotonMasIzquierdaOutlinedSecundario from "./Componentes/Botones/BotonMasIzquierdaOutlinedSecundario";
+import BotonMasIzquierdaOutlinedDisabled from "./Componentes/Botones/BotonMasIzquierdaOutlinedDisabled";
+import BotonMasDerechaOutlined from "./Componentes/Botones/BotonMasDerechaOutlined";
+import BotonMasDerechaOutlinedSecundario from "./Componentes/Botones/BotonMasDerechaOutlinedSecundario";
+import BotonMasDerechaOutlinedDisabled from "./Componentes/Botones/BotonMasDerechaOutlinedDisabled";
+import BotonVacio from "./Componentes/Botones/BotonVacio";
+import BotonMasIzquierdaVacio from "./Componentes/Botones/BotonMasIzquierdaVacio";
+import BotonMasDerechaVacio from "./Componentes/Botones/BotonMasDerechaVacio";
 
 let elements = [
   [
@@ -79,6 +100,36 @@ function App() {
       />
 
       <MultiAccordion data={elements2} id={2} />
+      <div className="container">
+        <BotonNormal content="hola" />
+        <BotonNormalSecundario content="hola" />
+        <BotonNormalDisabled content="hola" />
+        <br/>
+        <BotonMasIzquierdaNormal content="hola"/>
+        <BotonMasIzquierdaSecundario content="hola"/>
+        <BotonMasIzquierdaDisabled content="hola"/>
+        <br/>
+        <BotonMasDerechaNormal content="hola"/>
+        <BotonMasDerechaSecundario content="hola"/>
+        <BotonMasDerechaDisabled content="hola"/>
+        <br/>
+        <BotonOutlined content="hola"/>
+        <BotonOutlinedSecundario content="hola"/>
+        <BotonOutlinedDisabled content="hola"/>
+        <br/>
+        <BotonMasIzquierdaOutlined content="hola"/>
+        <BotonMasIzquierdaOutlinedSecundario content="hola"/>
+        <BotonMasIzquierdaOutlinedDisabled content="hola"/>
+        <br/>
+        <BotonMasDerechaOutlined content="hola"/>
+        <BotonMasDerechaOutlinedSecundario content="hola"/>
+        <BotonMasDerechaOutlinedDisabled content="hola"/>
+        <br/>
+        <BotonVacio content={"hola"} bgcolor="transparent" color="#1155cc"/> 
+        <BotonVacio content={"hola"} bgcolor="transparent" textDecoration="underline" color="#1155cc"/>
+        <BotonMasDerechaVacio content="hola"/>
+        <BotonMasIzquierdaVacio content="hola"/>
+      </div>
     </>
   );
 }

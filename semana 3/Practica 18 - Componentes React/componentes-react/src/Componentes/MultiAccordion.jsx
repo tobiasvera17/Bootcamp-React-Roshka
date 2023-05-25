@@ -18,7 +18,6 @@ const MultiAccordion = (props) => {
       <div className="container p-0 m-0" id={"multi-accordion-" + props.id}>
         <div className="accordion">
           {props.data.map((item, index) => {
-            console.log(item);
             return <MultiAccordionItem data={item} index={index} />;
           })}
         </div>
