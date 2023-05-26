@@ -24,6 +24,7 @@ import BotonMasIzquierdaVacio from "./Componentes/Botones/BotonMasIzquierdaVacio
 import BotonMasDerechaVacio from "./Componentes/Botones/BotonMasDerechaVacio";
 import Header from "./Componentes/Header";
 import Banner from "./Componentes/Banner";
+import Footer from "./Componentes/Footer";
 
 let elements = [
   [
@@ -140,7 +141,9 @@ function App() {
       <br/>
       <Header data={["item1", "item2", "item3", "item4"]} />
       <br/>
-      <Banner title="Work less, achieve more." text="Tempor amet duis irure tempor in adipisicing reprehenderit. Et tempor officia reprehenderit fugiat consequat nostrud. Et occaecat deserunt minim aute dolore est veniam veniam ullamco. Nostrud officia anim consectetur deserunt consectetur nostrud exercitation pariatur sunt commodo laboris nulla."/>
+      <Banner title="Work less, achieve more." text="Tempor amet duis irure tempor in adipisicing reprehenderit. Et tempor officia reprehenderit fugiat consequat nostrud."/>
+      <br/>
+      <Footer/>
     </>
   );
 }
