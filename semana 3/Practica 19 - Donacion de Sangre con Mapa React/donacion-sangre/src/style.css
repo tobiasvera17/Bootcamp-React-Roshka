@@ -1,0 +1,104 @@
+#container {
+    background-color: red;
+    /* max-width: 600px; */
+}
+
+#header-container {
+    background-color: red;
+    position:sticky;
+    top: 0;
+    padding: 10px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.336);
+    color: whitesmoke;
+}
+
+#solicitudes-header{
+    width: 100%;
+}
+
+#btn-agregarSolicitud {
+    color: whitesmoke;
+}
+
+#misSolicitudes-container {
+    margin-bottom: 30px;
+    margin-top: 10px;
+    color: whitesmoke;
+    padding: 10px;
+}
+
+#check-misSolicitudes {
+    background-color: red;
+    margin-left: 5px;
+    border: 1px solid whitesmoke;
+    width: 20px;
+    height: 20px;
+}
+
+.info-container {
+    background-color: whitesmoke;
+    min-width: 400px;
+    max-width: 500px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    padding: 20px;
+}
+
+.header-info-container {
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.title-header-info-container {
+    width: 80%;    
+}
+
+.delete-header-info-container {
+    width: 10%;
+}
+
+.share-header-info-container {
+    width: 10%;
+}
+
+.icon {
+    color: red;
+}
+
+.icon-sangre {
+    width: 30px;
+    height: 30px;
+}
+
+.footer-info-container {
+    padding: 10px;
+    max-width: 300px;
+}
+
+.leaflet-container{
+    width: 100%;
+    height: 100%;
+}
+
+#main-container{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#mapa-container {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#locales-container {
+    background-color: yellow;
+    width: 50%;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    padding: 30px;
+    z-index: 10;
+}
