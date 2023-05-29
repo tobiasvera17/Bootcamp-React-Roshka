@@ -1,8 +1,11 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import InfoLocal from "./InfoLocal";
+import { useState } from "react";
 
 const GenerarMapaLocales = (props) => {
+  const [showLocales, setShowLocales] = useState(false);
+
   const position = [51.505, -0.09];
   return (
     <div
@@ -47,13 +50,28 @@ const GenerarMapaLocales = (props) => {
           />
         </MapContainer>
       </div>
-      <div id="locales-container">
-        hola
-        {
-          props.locales.map((item, index) => {
-            return <InfoLocal data={item}/>
-          })
-        }
+      <div
+        id="locales-container"
+        className={showLocales ? "show-locales" : "hide-locales"}
+      >
+        <div
+          id="header-locales"
+          onClick={() => {
+            setShowLocales(!showLocales);
+          }}
+        >
+          {showLocales ? (
+            <i className="bi bi-caret-down"></i>
+          ) : (
+            <i className="bi bi-caret-up"></i>
+          )}
+        </div>
+
+        <div id="info-locales" className={showLocales ? "" : "d-none"}>
+          {props.locales.map((item, index) => {
+            return <InfoLocal key={index} data={item} idContainer={index} />;
+          })}
+        </div>
       </div>
     </div>
   );

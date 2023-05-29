@@ -7,9 +7,11 @@
     background-color: red;
     position:sticky;
     top: 0;
+    z-index: 10000;
     padding: 10px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.336);
     color: whitesmoke;
+    max-height: 50px;
 }
 
 #solicitudes-header{
@@ -38,7 +40,7 @@
 .info-container {
     background-color: whitesmoke;
     min-width: 400px;
-    max-width: 500px;
+    max-width: 400px;
     border-radius: 10px;
     margin-bottom: 50px;
     padding: 20px;
@@ -81,6 +83,8 @@
 }
 
 #main-container{
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     margin: 0;
@@ -89,16 +93,50 @@
 
 #mapa-container {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    height: calc(100vh - 50px);
     margin: 0;
     padding: 0;
 }
 
 #locales-container {
-    background-color: yellow;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: red;
     width: 50%;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
+    z-index: 1000;
+}
+
+.show-locales{
+    top: 10vh;
+    max-height: 90vh;
+}
+
+.hide-locales {
+    position: absolute;
+    max-height: 5vh;
+    top: calc(100vh - 30px);
+}
+
+#header-locales {
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    /* background-color: green; */
+    cursor: pointer;
+}
+
+#info-locales {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
     padding: 30px;
-    z-index: 10;
+    align-items: center;
+    max-width: 100%;
 }
