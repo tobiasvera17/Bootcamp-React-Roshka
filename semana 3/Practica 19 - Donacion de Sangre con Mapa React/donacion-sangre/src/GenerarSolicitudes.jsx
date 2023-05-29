@@ -14,6 +14,7 @@ const GenerarSolicitudes = (props) => {
       >
         Mis solicitudes <input id="check-misSolicitudes" type="checkbox" />
       </div>
+
       {keys.map((key, index) => {
         return <Info data={props.peticion[key]} idContainer={index} />;
       })}

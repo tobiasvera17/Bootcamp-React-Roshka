@@ -33,6 +33,7 @@ function Info(props) {
   return (
     <>
       <div
+        key={props.id}
         id={"info-container-" + String(props.idContainer)}
         className="info-container d-flex flex-column justify-content-center align-items-center"
       >
