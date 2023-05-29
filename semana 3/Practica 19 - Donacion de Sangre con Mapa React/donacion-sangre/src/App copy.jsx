@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./style.css";
+import GenerarSolicitudes from "./GenerarSolicitudes";
+import GenerarMapaLocales from "./GenerarMapaLocales";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showSolicitudes, setShowSolicitudes] = useState(false);
+
+  let peticion = {};
+  $.ajax({
+    dataType: "json",
+    async: false,
+    url: "http://192.168.16.90:8000/api/solicitudes",
+    success: function (result) {
+      peticion = result.data;
+    },
+  });
+  
+  let locales = {}
+  $.ajax({
+    dataType: "json",
+    async: false,
+    url: "http://192.168.16.90:8000/api/locales",
+    success: function (result) {
+      locales = result.data;
+    },
+  });
+
+  const toggle = () => {
+    setShowSolicitudes(!showSolicitudes);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div id="container" className="container-lg p-0 m-0 d-flex flex-column">
+        <div
+          id="header-container"
+          className="d-flex container-fluid text-center"
+        >
+          <div id="solicitudes-header">Solicitudes</div>
+          <div id="mas-button-container">
+            <button
+              id="btn-agregarSolicitud"
+              onClick={() => toggle()}
+              className="btn btn-link"
+            >
+              <i className="bi bi-plus-square-fill"></i>
+            </button>
+          </div>
+        </div>
+        {showSolicitudes == true ? (
+          <GenerarSolicitudes peticion={peticion} />
+        ) : (
+          <GenerarMapaLocales locales={locales} />
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -3,7 +3,17 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import InfoLocal from "./InfoLocal";
 import { useState } from "react";
 
-const GenerarMapaLocales = (props) => {
+let locales = {}
+$.ajax({
+  dataType: "json",
+  async: false,
+  url: "http://192.168.16.90:8000/api/locales",
+  success: function (result) {
+    locales = result.data;
+  },
+});
+
+const GenerarMapaLocales = () => {
   const [showLocales, setShowLocales] = useState(false);
 
   const position = [51.505, -0.09];
@@ -18,15 +28,15 @@ const GenerarMapaLocales = (props) => {
           zoom={7}
           scrollWheelZoom={true}
         >
-          {props.locales.map((item, index) => {
+          {locales.map((item, index) => {
             return (
               <Marker key={index} position={[item.latitud, item.longitud]}>
                 <Popup>
                   Nombre del local: {item.local_donacion} <br />
-                  Dirección: {item.direccion} <br />
-                  Horario de Apertura: {item.hora_apertura} hs.
+                  Dirección: { item.direccion != null ? item.direccion : "N/D"} <br />
+                  Horario de Apertura: {item.hora_apertura != null ? item.hora_apertura + "hs." : "N/D"}
                   <br />
-                  Horario de Cierre: {item.hora_cierre} hs.
+                  Horario de Cierre: {item.hora_cierre != null ? item.hora_cierre + "hs." : "N/D"}
                   <br />
                   <a
                     href={
@@ -61,14 +71,14 @@ const GenerarMapaLocales = (props) => {
           }}
         >
           {showLocales ? (
-            <i className="bi bi-caret-down"></i>
+            <i className="bi bi-caret-down-fill"></i>
           ) : (
-            <i className="bi bi-caret-up"></i>
+            <i className="bi bi-caret-up-fill"></i>
           )}
         </div>
 
         <div id="info-locales" className={showLocales ? "" : "d-none"}>
-          {props.locales.map((item, index) => {
+          {locales.map((item, index) => {
             return <InfoLocal key={index} data={item} idContainer={index} />;
           })}
         </div>
