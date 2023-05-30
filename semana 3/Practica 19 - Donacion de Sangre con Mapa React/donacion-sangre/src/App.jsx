@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./style.css";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate} from "react-router-dom";
 import Header from "./Header";
 
 function App() {
+  const location = useLocation()
+  const navigate = useNavigate()
 
+  useEffect(() => {
+    if(location.pathname == "/"){
+      navigate("/solicitudes")
+    }
+  })
+  
   return (
     <>
       <div id="container" className="container-lg p-0 m-0 d-flex flex-column">
