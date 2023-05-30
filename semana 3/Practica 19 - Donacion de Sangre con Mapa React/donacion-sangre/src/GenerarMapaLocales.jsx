@@ -80,7 +80,6 @@ let locales = [
 const GenerarMapaLocales = () => {
   const [showLocales, setShowLocales] = useState(false);
 
-  const position = [51.505, -0.09];
   return (
     <div
       id="main-container"
@@ -110,6 +109,7 @@ const GenerarMapaLocales = () => {
                       item.longitud
                     }
                     target="_blank"
+                    rel="noreferrer"
                   >
                     Ir a Maps
                   </a>{" "}

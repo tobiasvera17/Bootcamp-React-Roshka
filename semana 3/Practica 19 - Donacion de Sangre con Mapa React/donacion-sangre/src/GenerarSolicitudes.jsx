@@ -1,6 +1,4 @@
-import React from "react";
 import Info from "./Info";
-import { useState } from "react";
 
 // let peticion = {};
 // $.ajax({
@@ -528,7 +526,6 @@ const GenerarSolicitudes = () => {
         <div id="mas-button-container">
           <button
             id="btn-agregarSolicitud"
-            onClick={() => toggle()}
             className="btn btn-link"
           >
             <i className="bi bi-plus-square-fill"></i>
@@ -543,7 +540,7 @@ const GenerarSolicitudes = () => {
       </div>
 
       {keys.map((key, index) => {
-        return <Info data={peticion[key]} idContainer={index} />;
+        return <Info data={peticion[key]} idContainer={index} key={index}/>;
       })} 
     </div>
   );

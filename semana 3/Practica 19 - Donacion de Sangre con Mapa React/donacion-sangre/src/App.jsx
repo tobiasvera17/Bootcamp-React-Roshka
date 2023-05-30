@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import "./style.css";
 import { Outlet, useLocation, useNavigate} from "react-router-dom";
 import Header from "./Header";
@@ -12,7 +12,7 @@ function App() {
       navigate("/solicitudes")
     }
   })
-  
+
   return (
     <>
       <div id="container" className="container-lg p-0 m-0 d-flex flex-column">
