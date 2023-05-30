@@ -1,9 +1,8 @@
-import React from 'react'
 import "./style-components.css"
 import { Link } from 'react-router-dom'
 
 let data = ["Mapa","Solicitudes","Perfil","Login","Certificados"]
-let sites =["/mapa","/solicitudes","/","/","/"]
+let sites =["/mapa","/solicitudes","/","/login","/"]
 
 
 const Header = () => {
@@ -15,8 +14,7 @@ const Header = () => {
         <div className='buttons-header-container d-flex container-fluid p-0 m-0 align-items-center justify-content-end'>
                 {
                 data.map((item, index) => {
-                    console.log(item)
-                    return <Link to={sites[index]}><button key={index} className='button-header'>{item}</button></Link>
+                    return <Link to={sites[index]} key={index}><button className='button-header'>{item}</button></Link>
                 })
                 }
         </div>
