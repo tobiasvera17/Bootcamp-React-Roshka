@@ -187,3 +187,7 @@
 .btn-link:focus {
     color: red;
 }
+
+.bi {
+    cursor: pointer;
+}
