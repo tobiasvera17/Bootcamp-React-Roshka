@@ -3,7 +3,11 @@ import { useNavigate } from "react-router-dom";
 const RestablecerContrasena = () => {
   const navigate = useNavigate();
   function goToRoot() {
+    const regex = /\w+@\w/
+    if(regex.test(document.getElementById('user-email').value))
     navigate("/");
+    else
+    alert("Por favor introduzca los datos requeridos correctamente.")
   }
 
   return (
