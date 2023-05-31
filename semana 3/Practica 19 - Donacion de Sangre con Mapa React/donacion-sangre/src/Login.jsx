@@ -63,7 +63,7 @@ const Login = () => {
               ></i>
             </div>
             <div className="mt-5 d-flex flex-column align-items-center justify-content-center">
-              <button type="submit" className="btn btn-primary bg-danger border-danger">
+              <button type="submit" className="btn btn-danger">
                 Iniciar Sesión
               </button>
               <Link to={"/registro"}>
