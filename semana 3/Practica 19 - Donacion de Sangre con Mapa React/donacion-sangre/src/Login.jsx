@@ -67,7 +67,9 @@ const Login = () => {
                 Iniciar Sesión
               </button>
               <Link to={"/registro"}>
-                <button className="btn btn-link fw-bold text-danger">Registrarse</button>
+                <button className="btn btn-link fw-bold text-danger">
+                  Registrarse
+                </button>
               </Link>
               <Link to={"/restablecer-contrasena"}>
                 <button className="btn btn-link fw-bold text-danger">

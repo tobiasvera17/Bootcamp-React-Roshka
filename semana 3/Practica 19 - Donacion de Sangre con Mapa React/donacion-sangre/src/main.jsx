@@ -7,6 +7,7 @@ import GenerarSolicitudes from "./GenerarSolicitudes.jsx";
 import Login from "./Login.jsx";
 import Registro from "./Registro.jsx";
 import RestablecerContrasena from "./RestablecerContrasena.jsx";
+import Perfil from "./Perfil.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,8 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "/registro", element: <Registro /> },
       { path: "/restablecer-contrasena", element: <RestablecerContrasena /> },
+      { path: "perfil", element: <Perfil/> },
+
     ],
   },
 ]);

@@ -150,12 +150,25 @@
 
 .btn-danger {
     width: 80%;
+    margin: 5px;
 }
 
 .btn-link {
     text-decoration: none;
 }
 
-.bi {
+.bi-eye{
     cursor: pointer;
+}
+
+.bi-eye-slash{
+    cursor: pointer;
+}
+
+.bi-person-circle {
+    font-size: 100px;
+}
+
+.card {
+    width: 80%;
 }
