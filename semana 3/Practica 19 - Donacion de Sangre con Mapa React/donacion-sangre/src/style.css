@@ -1,9 +1,9 @@
 #container {
-    background-color: red;
+    background-color: white;
     min-height: 100vh;
 }
 
-#header-container{
+/* #header-container{
     background-color: red;
     position:sticky;
     top: 0;
@@ -12,26 +12,10 @@
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.336);
     color: whitesmoke;
     max-height: 50px;
-}
+} */
 
 #solicitudes-header-container {
-    background-color: red;
-    color: whitesmoke;
-}
-
-#solicitudes-header{
-    width: 100%;
-}
-
-#btn-agregarSolicitud {
-    color: whitesmoke;
-}
-
-#misSolicitudes-container {
-    margin-bottom: 30px;
-    margin-top: 10px;
-    color: whitesmoke;
-    padding: 10px;
+    color: red;
 }
 
 #check-misSolicitudes {
@@ -44,6 +28,7 @@
 
 .info-container {
     background-color: whitesmoke;
+    border: 2px solid red;
     min-width: 400px;
     max-width: 400px;
     border-radius: 10px;
@@ -109,7 +94,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    background-color: red;
+    background-color:  white;
     width: 50%;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
@@ -130,10 +115,13 @@
 #header-locales {
     display: flex;
     flex-direction: column;
+    color: whitesmoke;
     height: 30px;
     width: 100%;
     justify-content: center;
     align-items: center;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
     /* background-color: green; */
     cursor: pointer;
 }
@@ -153,6 +141,7 @@
     padding: 30px;
     background-color: whitesmoke;
     border-radius: 10px;
+    border: 2px solid red;
 }
 
 #img-header-login {
@@ -160,32 +149,11 @@
 }
 
 .btn-primary {
-    background-color: red;
-    border-color: red;
     width: 80%;
-}
-
-.btn-primary:hover {
-    background-color: red;
-    border-color: red;
-}
-
-.btn-primary:focus {
-    background-color: red;
-    border-color: red;
 }
 
 .btn-link {
     text-decoration: none;
-    color: red;
-}
-
-.btn-link:hover {
-    color: red;
-}
-
-.btn-link:focus {
-    color: red;
 }
 
 .bi {

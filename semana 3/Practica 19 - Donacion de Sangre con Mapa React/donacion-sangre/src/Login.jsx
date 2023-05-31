@@ -63,14 +63,14 @@ const Login = () => {
               ></i>
             </div>
             <div className="mt-5 d-flex flex-column align-items-center justify-content-center">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary bg-danger border-danger">
                 Iniciar Sesión
               </button>
               <Link to={"/registro"}>
-                <button className="btn btn-link fw-bold">Registrarse</button>
+                <button className="btn btn-link fw-bold text-danger">Registrarse</button>
               </Link>
               <Link to={"/restablecer-contrasena"}>
-                <button className="btn btn-link fw-bold">
+                <button className="btn btn-link fw-bold text-danger">
                   Olvidaste tu contraseña?
                 </button>
               </Link>

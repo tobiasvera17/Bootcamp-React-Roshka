@@ -132,13 +132,14 @@ const GenerarMapaLocales = () => {
       </div>
       <div
         id="locales-container"
-        className={showLocales ? "show-locales" : "hide-locales"}
+        className={(showLocales ? "show-locales" : "hide-locales")}
       >
         <div
           id="header-locales"
           onClick={() => {
             setShowLocales(!showLocales);
           }}
+          className="bg-danger"
         >
           {showLocales ? (
             <i className="bi bi-caret-down-fill"></i>

@@ -521,22 +521,23 @@ const GenerarSolicitudes = () => {
       id="main-container"
       className="d-flex flex-column container-fluid align-items-center p-0 m-0"
     >
-      <div id="solicitudes-header-container" className="d-flex container-fluid text-center p-3 m-0">
-        <div id="solicitudes-header">Solicitudes</div>
-        <div id="mas-button-container">
+      <div id="solicitudes-header-container" className="d-flex container-fluid text-center p-3 m-0 align-items-center justify-content-center text-danger">
+        <div id="agregarSolicitud-container" className="d-flex justify-content-center align-items-center"
+      >
           <button
             id="btn-agregarSolicitud"
-            className="btn btn-link"
+            className="btn btn-link text-danger"
           >
-            <i className="bi bi-plus-square-fill"></i>
+            Agregar Solicitud <i className="bi bi-plus-square-fill"></i>
           </button>
         </div>
-      </div>
-      <div
+
+        <div
         id="misSolicitudes-container"
         className="d-flex justify-content-center align-items-center"
       >
         Mis solicitudes <input id="check-misSolicitudes" type="checkbox" />
+      </div>
       </div>
 
       {keys.map((key, index) => {
