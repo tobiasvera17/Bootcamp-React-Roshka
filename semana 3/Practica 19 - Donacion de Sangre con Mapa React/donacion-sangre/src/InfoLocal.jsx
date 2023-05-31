@@ -1,7 +1,4 @@
-import React from "react";
-
 const InfoLocal = (props) => {
-  console.log(props.data);
   return (
     <>
       <div
