@@ -1,10 +1,84 @@
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 const Registro = () => {
+  const navigate = useNavigate();
   let today = new Date().toISOString().slice(0, 10);
-  const gotoRoot = () => {
-    // const navigate = useNavigate();
-    console.log(document.querySelector("#user-gender").value)
-    
+
+  const gotoRoot = (event) => {
+    event.preventDefault();
+    const regex_ci = /[0-9]+/;
+
+    let nombre = false;
+    let apellido = false;
+    let ci = false;
+    let genero = false;
+    let fecha_nacimiento = false;
+    let email = false;
+    let contrasena = false;
+
+    if (document.querySelector("#user-name").value != "") {
+      nombre = true;
+    } else {
+      alert("Debe ingresar el nombre correcctamente");
+    }
+
+    if (document.querySelector("#user-lastname").value != "") {
+      apellido = true;
+    } else {
+      alert("Debe ingresar el apellido correctamente");
+    }
+
+    if (regex_ci.test(document.querySelector("#user-ci").value)) {
+      ci = true;
+    } else {
+      alert("Debe ingresar la cédula de identidad correctamente");
+    }
+
+    if (document.querySelector("#user-gender").value != "") {
+      genero = true;
+    } else {
+      alert("Debe ingresar el género correctamente");
+    }
+
+    if (document.querySelector("#user-birthday").value != "") {
+      fecha_nacimiento = true;
+    } else {
+      alert("Debe ingresar la fecha de nacimiento correctamente");
+    }
+
+    if (document.querySelector("#user-email").value != "") {
+      email = true;
+    } else {
+      alert("Debe ingresar el email correctamente");
+    }
+
+    if (
+      document.querySelector("#user-password").value != "" &&
+      document.querySelector("#user-passwordSecond").value != ""
+    ) {
+      if (
+        document.querySelector("#user-password").value ===
+        document.querySelector("#user-passwordSecond").value
+      ) {
+        contrasena = true;
+      } else {
+        alert("Las contraseñas no coinciden");
+      }
+    } else {
+      alert("Debe ingresar las contraseñas correctamente");
+    }
+
+    if (
+      nombre &&
+      apellido &&
+      ci &&
+      genero &&
+      fecha_nacimiento &&
+      email &&
+      contrasena
+    ) {
+      navigate("/");
+    }
   };
 
   const togglePasswordfunction = () => {
