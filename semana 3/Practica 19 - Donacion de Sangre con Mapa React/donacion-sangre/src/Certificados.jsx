@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import InfoCertificado from "./InfoCertificado";
+import { Link } from "react-router-dom";
 
 const Certificados = () => {
   const [datos, setDatos] = useState(null);
@@ -14,7 +15,6 @@ const Certificados = () => {
       })
       .then((response) => {
         setDatos(response.data.data);
-        console.log(response.data.data);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -34,20 +34,12 @@ const Certificados = () => {
               id="agregarSolicitud-container"
               className="d-flex justify-content-center align-items-center"
             >
-              <button
-                id="btn-agregarSolicitud"
+              <Link to={"/generar-certificado"}><button
+                id="btn-agregarCertificado"
                 className="btn btn-link text-danger"
               >
                 Agregar Certificado <i className="bi bi-plus-square-fill"></i>
-              </button>
-            </div>
-
-            <div
-              id="misSolicitudes-container"
-              className="d-flex justify-content-center align-items-center"
-            >
-              Mis solicitudes{" "}
-              <input id="check-misSolicitudes" type="checkbox" />
+              </button></Link>
             </div>
           </div>
 

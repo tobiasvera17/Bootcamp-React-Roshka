@@ -9,6 +9,7 @@ import Registro from "./Registro.jsx";
 import RestablecerContrasena from "./RestablecerContrasena.jsx";
 import Perfil from "./Perfil.jsx";
 import Certificados from "./Certificados.jsx";
+import GenerarCertificado from "./GenerarCertificado.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +23,7 @@ const router = createBrowserRouter([
       { path: "/restablecer-contrasena", element: <RestablecerContrasena /> },
       { path: "/perfil", element: <Perfil/> },
       { path: "/certificados", element: <Certificados/> },
-
-
+      { path: "/generar-certificado", element: <GenerarCertificado/> },
     ],
   },
 ]);
