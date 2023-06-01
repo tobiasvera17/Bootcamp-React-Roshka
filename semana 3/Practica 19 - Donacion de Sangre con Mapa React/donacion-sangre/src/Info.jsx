@@ -1,10 +1,8 @@
-import { useState } from "react";
 import "./style.css";
 
 let type = ["A+", "A-", "B+", "B-", "O+", "O-", "AB-", "AB+"];
 
 function Info(props) {
-  const [count, setCount] = useState(0);
   let link_whatsapp = String(
     `https://api.whatsapp.com/send?text=*SOLICITUD DONACIÓN DE SANGRE*\n` +
       `Nombre Donatario: ` +

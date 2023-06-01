@@ -10,6 +10,7 @@ import RestablecerContrasena from "./RestablecerContrasena.jsx";
 import Perfil from "./Perfil.jsx";
 import Certificados from "./Certificados.jsx";
 import GenerarCertificado from "./GenerarCertificado.jsx";
+import GenerarSolicitud from "./GenerarSolicitud.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,12 +19,13 @@ const router = createBrowserRouter([
     children: [
       { path: "mapa", element: <GenerarMapaLocales /> },
       { path: "solicitudes", element: <GenerarSolicitudes /> },
+      { path: "generar-solicitud", element: <GenerarSolicitud /> },
       { path: "login", element: <Login /> },
-      { path: "/registro", element: <Registro /> },
-      { path: "/restablecer-contrasena", element: <RestablecerContrasena /> },
-      { path: "/perfil", element: <Perfil/> },
-      { path: "/certificados", element: <Certificados/> },
-      { path: "/generar-certificado", element: <GenerarCertificado/> },
+      { path: "registro", element: <Registro /> },
+      { path: "restablecer-contrasena", element: <RestablecerContrasena /> },
+      { path: "perfil", element: <Perfil/> },
+      { path: "certificados", element: <Certificados/> },
+      { path: "generar-certificado", element: <GenerarCertificado/> },
     ],
   },
 ]);
