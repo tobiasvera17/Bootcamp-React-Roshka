@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate()
+
   const togglePasswordfunction = () => {
     const togglePassword = document.querySelector("#togglePassword");
 
@@ -11,6 +14,42 @@ const Login = () => {
     password.setAttribute("type", type);
     togglePassword.classList.toggle("bi-eye");
   };
+
+  const login = (event) => {
+    event.preventDefault()
+    const email = document.getElementById("user-email").value
+    const password = document.getElementById("user-password").value
+    console.log(email)
+    console.log(password)
+
+    if(email == ""){
+      return alert("Por favor ingrese su email.")
+    }
+
+    if(password == "") {
+      return alert("Por favor ingrese su contraseña") 
+    }
+
+    axios
+    .post(
+      "http://192.168.16.90:8000/api/login/",
+        {
+          "email": email,
+          "password": password
+        },
+    )
+    .then((response) => {
+      console.log(response)
+      if (response.data.status == true) {
+          localStorage.setItem("token", response.data.token);
+          navigate("/perfil")
+        }
+        else{
+            alert(response.data.message)
+        }
+    })
+    .catch((error) => console.log(error));
+  }
 
   return (
     <div
@@ -63,7 +102,7 @@ const Login = () => {
               ></i>
             </div>
             <div className="mt-5 d-flex flex-column align-items-center justify-content-center">
-              <button type="submit" className="btn btn-danger">
+              <button type="submit" className="btn btn-danger" onClick={login}>
                 Iniciar Sesión
               </button>
               <Link to={"/registro"}>

@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 
 const Certificados = () => {
   const [datos, setDatos] = useState(null);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     axios
       .get("http://192.168.16.90:8000/api/certificados?desc=1", {
         headers: {
-          Authorization: "Bearer 355|CQoIjLk22W2cRYMECEkXqTdImu0MTscUtGqOlgBQ",
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
@@ -34,12 +35,14 @@ const Certificados = () => {
               id="agregarSolicitud-container"
               className="d-flex justify-content-center align-items-center"
             >
-              <Link to={"/generar-certificado"}><button
-                id="btn-agregarCertificado"
-                className="btn btn-link text-danger"
-              >
-                Agregar Certificado <i className="bi bi-plus-square-fill"></i>
-              </button></Link>
+              <Link to={"/generar-certificado"}>
+                <button
+                  id="btn-agregarCertificado"
+                  className="btn btn-link text-danger"
+                >
+                  Agregar Certificado <i className="bi bi-plus-square-fill"></i>
+                </button>
+              </Link>
             </div>
           </div>
 

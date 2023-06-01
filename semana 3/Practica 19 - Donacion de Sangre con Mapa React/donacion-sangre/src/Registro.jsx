@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Registro = () => {
   const navigate = useNavigate();
@@ -8,77 +9,70 @@ const Registro = () => {
     event.preventDefault();
     const regex_ci = /[0-9]+/;
 
-    let nombre = false;
-    let apellido = false;
-    let ci = false;
-    let genero = false;
-    let fecha_nacimiento = false;
-    let email = false;
-    let contrasena = false;
+    let name = document.querySelector("#user-name").value;
+    let surname = document.querySelector("#user-lastname").value;
+    let nro_cedula = document.querySelector("#user-ci").value;
+    let sexo = document.querySelector("#user-gender").value;
+    let fecha_nacimiento = document.querySelector("#user-birthday").value;
+    let email = document.querySelector("#user-email").value;
+    let password = document.querySelector("#user-password").value;
+    let passwordSecond = document.querySelector("#user-passwordSecond").value;
 
-    if (document.querySelector("#user-name").value != "") {
-      nombre = true;
-    } else {
-      alert("Debe ingresar el nombre correcctamente");
+    if (name == "") {
+      return alert("Debe ingresar el nombre correctamente");
     }
 
-    if (document.querySelector("#user-lastname").value != "") {
-      apellido = true;
-    } else {
-      alert("Debe ingresar el apellido correctamente");
+    if (surname == "") {
+      return alert("Debe ingresar el apellido correctamente");
     }
 
-    if (regex_ci.test(document.querySelector("#user-ci").value)) {
-      ci = true;
-    } else {
-      alert("Debe ingresar la cédula de identidad correctamente");
+    if (!regex_ci.test(nro_cedula)) {
+      return alert("Debe ingresar la cédula de identidad correctamente");
     }
 
-    if (document.querySelector("#user-gender").value != "") {
-      genero = true;
-    } else {
-      alert("Debe ingresar el género correctamente");
+    if (sexo == "") {
+      return alert("Debe ingresar el género correctamente");
     }
 
-    if (document.querySelector("#user-birthday").value != "") {
-      fecha_nacimiento = true;
-    } else {
-      alert("Debe ingresar la fecha de nacimiento correctamente");
+    if (fecha_nacimiento == "") {
+      return alert("Debe ingresar la fecha de nacimiento correctamente");
     }
 
-    if (document.querySelector("#user-email").value != "") {
-      email = true;
-    } else {
-      alert("Debe ingresar el email correctamente");
+    if (email == "") {
+      return alert("Debe ingresar el email correctamente");
     }
 
-    if (
-      document.querySelector("#user-password").value != "" &&
-      document.querySelector("#user-passwordSecond").value != ""
-    ) {
-      if (
-        document.querySelector("#user-password").value ===
-        document.querySelector("#user-passwordSecond").value
-      ) {
-        contrasena = true;
-      } else {
-        alert("Las contraseñas no coinciden");
-      }
-    } else {
-      alert("Debe ingresar las contraseñas correctamente");
+    if (password == "" || passwordSecond == "") {
+      return alert("Debe ingresar las contraseñas correctamente");
     }
 
-    if (
-      nombre &&
-      apellido &&
-      ci &&
-      genero &&
-      fecha_nacimiento &&
-      email &&
-      contrasena
-    ) {
-      navigate("/");
-    }
+    if (password != passwordSecond){
+      return alert("Las contraseñas no coinciden.")
+    } 
+
+    axios
+    .post(
+      "http://192.168.16.90:8000/api/registro/",
+        {
+          "name": name,
+          "surname": surname,
+          "password": password,
+          "email": email,
+          "fecha_nacimiento": fecha_nacimiento,
+          "sexo": sexo,
+          "nro_cedula": nro_cedula
+        },
+    )
+    .then((response) => {
+      if (response.data.status == true) {
+          localStorage.setItem("token", response.data.token);
+          navigate("/perfil")
+        }
+        else{
+            alert(response.data.message)
+        }
+    })
+    .catch((error) => console.log(error));
   };
 
   const togglePasswordfunction = () => {

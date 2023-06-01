@@ -6,84 +6,87 @@ let type = ["A+", "A-", "B+", "B-", "O+", "O-", "AB-", "AB+"];
 
 const GenerarSolicitud = () => {
   const [locales, setLocales] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const generarSolicitud = (event) => {
     event.preventDefault(event);
 
-    const nombre_apellido_donatario = document.getElementById("nombre_apellido_donatario").value
-    const cedula_donatario = document.getElementById("cedula_donatario").value
-    const tipo_sangre = document.getElementById("tipo_sangre").value
-    const establecimiento = document.getElementById("establecimiento").value
-    const volumenes_necesarios = document.getElementById("volumenes_necesarios").value
-    const fecha_limite = document.getElementById("fecha_limite").value
-    const telefono_contacto = document.getElementById("telefono_contacto").value
-    const solicitud = document.getElementById("solicitud").value
+    const nombre_apellido_donatario = document.getElementById(
+      "nombre_apellido_donatario"
+    ).value;
+    const cedula_donatario = document.getElementById("cedula_donatario").value;
+    const tipo_sangre = document.getElementById("tipo_sangre").value;
+    const establecimiento = document.getElementById("establecimiento").value;
+    const volumenes_necesarios = document.getElementById(
+      "volumenes_necesarios"
+    ).value;
+    const fecha_limite = document.getElementById("fecha_limite").value;
+    const telefono_contacto =
+      document.getElementById("telefono_contacto").value;
+    const solicitud = document.getElementById("solicitud").value;
 
-    if(nombre_apellido_donatario == ""){
-        return alert("Por favor ingrese el nombre y apellido correctamente.")
+    if (nombre_apellido_donatario == "") {
+      return alert("Por favor ingrese el nombre y apellido correctamente.");
     }
 
-    if(cedula_donatario == ""){
-        return alert("Por favor ingrese el número de cédula correctamente.")
+    if (cedula_donatario == "") {
+      return alert("Por favor ingrese el número de cédula correctamente.");
     }
 
-    if(tipo_sangre == ""){
-        return alert("Por favor ingrese el tipo de sangre correctamente.")
+    if (tipo_sangre == "") {
+      return alert("Por favor ingrese el tipo de sangre correctamente.");
     }
 
-    if(establecimiento == ""){
-        return alert("Por favor ingrese el establecimiento correctamente.")
+    if (establecimiento == "") {
+      return alert("Por favor ingrese el establecimiento correctamente.");
     }
 
-    if(volumenes_necesarios == ""){
-        return alert("Por favor ingrese el volumen correctamente.")
-    }
-    
-    if(fecha_limite == ""){
-        return alert("Por favor ingrese la fecha límite correctamente.")
+    if (volumenes_necesarios == "") {
+      return alert("Por favor ingrese el volumen correctamente.");
     }
 
-    if(telefono_contacto == ""){
-        return alert("Por favor ingrese el teléfono correctamente.")
+    if (fecha_limite == "") {
+      return alert("Por favor ingrese la fecha límite correctamente.");
     }
 
-    if(fecha_limite == ""){
-        return alert("Por favor ingrese la fecha límite correctamente.")
+    if (telefono_contacto == "") {
+      return alert("Por favor ingrese el teléfono correctamente.");
+    }
+
+    if (fecha_limite == "") {
+      return alert("Por favor ingrese la fecha límite correctamente.");
     }
 
     axios
       .post(
         "http://192.168.16.90:8000/api/solicitudes/",
         {
-            "solicitud": solicitud,
-            "fecha_limite": fecha_limite,
-            "volumenes_necesarios": volumenes_necesarios,
-            "nombre_apellido_donatario": nombre_apellido_donatario,
-            "cedula_donatario": cedula_donatario,
-            "telefono_contacto": telefono_contacto,
-            "tipo_sangre": Number(tipo_sangre),
-            "establecimiento": establecimiento
+          solicitud: solicitud,
+          fecha_limite: fecha_limite,
+          volumenes_necesarios: volumenes_necesarios,
+          nombre_apellido_donatario: nombre_apellido_donatario,
+          cedula_donatario: cedula_donatario,
+          telefono_contacto: telefono_contacto,
+          tipo_sangre: Number(tipo_sangre),
+          establecimiento: establecimiento,
         },
         {
           headers: {
-            Authorization:
-              "Bearer 355|CQoIjLk22W2cRYMECEkXqTdImu0MTscUtGqOlgBQ",
+            Authorization: `Bearer ${token}`,
           },
         }
       )
       .then((response) => {
-        console.log(response)
         if (response.status == "200") {
-            alert("Solicitud generada correctamente.");
-            navigate("/solicitudes")
-          }
-          else{
-              alert("No se pudo generar el certificado\n" + response.message)
-          }
+          alert("Solicitud generada correctamente.");
+          navigate("/solicitudes");
+        } else {
+          alert("No se pudo generar el certificado\n" + response.message);
+        }
       })
       .catch((error) => console.log(error));
-  }
+  };
 
   useEffect(() => {
     axios
@@ -214,14 +217,15 @@ const GenerarSolicitud = () => {
                   <label htmlFor="solicitud" className="form-label">
                     Descripción
                   </label>
-                  <textarea
-                    className="form-control"
-                    id="solicitud"
-                  ></textarea>
+                  <textarea className="form-control" id="solicitud"></textarea>
                 </div>
 
                 <div className="mt-5 d-flex flex-column align-items-center justify-content-center">
-                  <button type="submit" className="btn btn-danger" onClick={generarSolicitud}>
+                  <button
+                    type="submit"
+                    className="btn btn-danger"
+                    onClick={generarSolicitud}
+                  >
                     Generar Solicitud
                   </button>
                 </div>

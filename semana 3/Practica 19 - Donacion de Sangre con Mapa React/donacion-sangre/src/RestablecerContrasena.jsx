@@ -1,13 +1,30 @@
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const RestablecerContrasena = () => {
   const navigate = useNavigate();
-  function goToRoot() {
-    const regex = /\w+@\w/
-    if(regex.test(document.getElementById('user-email').value))
-    navigate("/");
-    else
-    alert("Por favor introduzca los datos requeridos correctamente.")
+  function goToRoot(event) {
+    event.preventDefault();
+    const regex = /\w+@\w/;
+    const email = document.getElementById("user-email").value;
+
+    if (!regex.test(email)) {
+      return alert("Por favor introduzca los datos requeridos correctamente.");
+    }
+
+    axios
+      .post("http://192.168.16.90:8000/api/reset-password/", {
+        email: email,
+      })
+      .then((response) => {
+        if (response.status == 200) {
+          alert(response.data.message);
+          navigate("/login");
+        } else {
+          alert(response.data.message);
+        }
+      })
+      .catch((error) => console.log(error));
   }
 
   return (

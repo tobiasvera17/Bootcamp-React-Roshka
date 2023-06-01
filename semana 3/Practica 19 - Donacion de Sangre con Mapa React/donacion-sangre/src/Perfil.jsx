@@ -1,18 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Perfil = () => {
   const [datos, setDatos] = useState(null);
   useEffect(() => {
+    const token = localStorage.getItem("token")
+
     axios
       .get("http://192.168.16.90:8000/api/user/", {
         headers: {
-          Authorization: "Bearer 385|cMMYwbuxuno6gn7HshU9PYsLxoprRvcuZphn9fcs",
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
         setDatos(response.data);
-        console.log(response.data);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -69,10 +71,9 @@ const Perfil = () => {
                   </tbody>
                 </table>
               </div>
-              <button className="btn btn-danger">Editar información</button>
-              <button className="btn btn-danger">Cambiar contraseña</button>
-              <button className="btn btn-danger">Cerrrar Sesión</button>
-
+              <Link to="/cambiar-contrasena"><button className="btn btn-danger">Editar información</button></Link>
+              <Link to="/cambiar-contrasena"><button className="btn btn-danger">Cambiar contraseña</button></Link>
+              <Link to="/cambiar-contrasena"><button className="btn btn-danger">Cerrrar Sesión</button></Link>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const GenerarCertificado = () => {
   const [datos, setDatos] = useState(null);
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   let today = new Date().toISOString().slice(0, 10);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const GenerarCertificado = () => {
         {
           headers: {
             Authorization:
-              "Bearer 355|CQoIjLk22W2cRYMECEkXqTdImu0MTscUtGqOlgBQ",
+              `Bearer ${token}`,
           },
         }
       )
