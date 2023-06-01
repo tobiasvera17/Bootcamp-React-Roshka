@@ -36,7 +36,7 @@ const Perfil = () => {
                 <h4>{datos.name + " " + datos.surname}</h4>
               </div>
             </div>
-            <div id="form-login" className="container-fluid text-center">
+            <div id="form-login" className="container-fluid d-flex flex-column justify-content-center align-items-center">
               <div className="table-responsive">
                 <table className="table">
                   <thead>

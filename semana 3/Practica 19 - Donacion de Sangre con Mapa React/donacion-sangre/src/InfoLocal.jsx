@@ -43,12 +43,12 @@ const InfoLocal = (props) => {
 
         <div className="footer-info-container container-fluid fw-bold row text-center">
           <div className="col">
-            <a href="#" className="link link-primary">
+            <a href="#" className="link link-danger">
               Ver más
             </a>
           </div>
           <div className="col">
-            <a href="#" className="link-primary">
+            <a href="#" className="link link-danger">
               Ir
             </a>
           </div>
