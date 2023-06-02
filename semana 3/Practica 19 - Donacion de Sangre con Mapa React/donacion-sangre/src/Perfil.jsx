@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Perfil = () => {
   const [datos, setDatos] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -20,6 +21,13 @@ const Perfil = () => {
         console.log(error);
       });
   }, []);
+
+  const cerrarSesion = () => {
+    if (confirm("Desea cerrar su sesión?")) {
+      localStorage.removeItem("token");
+      navigate("/login");
+    }
+  };
 
   return (
     <>
@@ -86,9 +94,7 @@ const Perfil = () => {
               <Link to="/cambiar-contrasena" className="btn btn-danger">
                 Cambiar contraseña
               </Link>
-              <Link to="/cambiar-contrasena" className="btn btn-danger">
-                Cerrrar Sesión
-              </Link>
+              <button className="btn btn-danger" onClick={cerrarSesion}>Cerrrar Sesión</button>
             </div>
           </div>
         </div>

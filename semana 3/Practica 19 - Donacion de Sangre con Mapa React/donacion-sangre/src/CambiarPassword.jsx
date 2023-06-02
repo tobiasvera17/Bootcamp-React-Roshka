@@ -38,7 +38,7 @@ const CambiarPassword = () => {
     togglePassword.classList.toggle("bi-eye");
   };
 
-  const changePassword = () => {
+  const changePassword = (event) => {
     event.preventDefault();
     const old_password = document.getElementById("user-password").value;
     const password = document.getElementById("user-passwordNew").value;

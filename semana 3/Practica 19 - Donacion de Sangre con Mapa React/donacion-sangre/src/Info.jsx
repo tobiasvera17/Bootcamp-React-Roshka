@@ -1,6 +1,6 @@
 import "./style.css";
 
-let type = ["A+", "A-", "B+", "B-", "O+", "O-", "AB-", "AB+"];
+let type = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
 
 function Info(props) {
   let link_whatsapp = String(
