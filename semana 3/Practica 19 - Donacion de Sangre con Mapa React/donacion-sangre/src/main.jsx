@@ -12,6 +12,7 @@ import CambiarPassword from "./CambiarPassword.jsx";
 import Certificados from "./Certificados.jsx";
 import GenerarCertificado from "./GenerarCertificado.jsx";
 import GenerarSolicitud from "./GenerarSolicitud.jsx";
+import EditarInformacion from "./EditarInformacion.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,10 +25,11 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "registro", element: <Registro /> },
       { path: "restablecer-contrasena", element: <RestablecerContrasena /> },
+      { path: "perfil", element: <Perfil /> },
       { path: "cambiar-contrasena", element: <CambiarPassword /> },
-      { path: "perfil", element: <Perfil/> },
-      { path: "certificados", element: <Certificados/> },
-      { path: "generar-certificado", element: <GenerarCertificado/> },
+      { path: "editar-informacion", element: <EditarInformacion /> },
+      { path: "certificados", element: <Certificados /> },
+      { path: "generar-certificado", element: <GenerarCertificado /> },
     ],
   },
 ]);

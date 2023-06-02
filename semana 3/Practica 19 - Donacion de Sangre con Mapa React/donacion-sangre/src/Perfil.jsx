@@ -80,7 +80,7 @@ const Perfil = () => {
                   </tbody>
                 </table>
               </div>
-              <Link to="/cambiar-contrasena" className="btn btn-danger">
+              <Link to="/editar-informacion" className="btn btn-danger">
                 Editar información
               </Link>
               <Link to="/cambiar-contrasena" className="btn btn-danger">
