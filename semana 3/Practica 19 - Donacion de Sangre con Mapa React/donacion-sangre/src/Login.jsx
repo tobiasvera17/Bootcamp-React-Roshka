@@ -2,7 +2,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const togglePasswordfunction = () => {
     const togglePassword = document.querySelector("#togglePassword");
@@ -16,40 +16,36 @@ const Login = () => {
   };
 
   const login = (event) => {
-    event.preventDefault()
-    const email = document.getElementById("user-email").value
-    const password = document.getElementById("user-password").value
-    console.log(email)
-    console.log(password)
+    event.preventDefault();
+    const email = document.getElementById("user-email").value;
+    const password = document.getElementById("user-password").value;
 
-    if(email == ""){
-      return alert("Por favor ingrese su email.")
+    if (email == "") {
+      return alert("Por favor ingrese su email.");
     }
 
-    if(password == "") {
-      return alert("Por favor ingrese su contraseña") 
+    if (password == "") {
+      return alert("Por favor ingrese su contraseña");
     }
 
     axios
-    .post(
-      "http://192.168.16.90:8000/api/login/",
-        {
-          "email": email,
-          "password": password
-        },
-    )
-    .then((response) => {
-      console.log(response)
-      if (response.data.status == true) {
+      .post("http://192.168.16.90:8000/api/login/", {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        if (response.data.status == true) {
           localStorage.setItem("token", response.data.token);
-          navigate("/perfil")
+          navigate("/perfil");
+        } else {
+          alert(response.data.message);
         }
-        else{
-            alert(response.data.message)
-        }
-    })
-    .catch((error) => console.log(error));
-  }
+      })
+      .catch((error) => {
+        // console.log(error);
+        alert(error.response.data.message);
+      });
+  };
 
   return (
     <div
