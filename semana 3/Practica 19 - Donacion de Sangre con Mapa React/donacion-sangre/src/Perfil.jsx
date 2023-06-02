@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Perfil = () => {
   const [datos, setDatos] = useState(null);
   useEffect(() => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
 
     axios
       .get("http://192.168.16.90:8000/api/user/", {
@@ -16,7 +16,9 @@ const Perfil = () => {
       .then((response) => {
         setDatos(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
@@ -38,7 +40,10 @@ const Perfil = () => {
                 <h4>{datos.name + " " + datos.surname}</h4>
               </div>
             </div>
-            <div id="form-login" className="container-fluid d-flex flex-column justify-content-center align-items-center">
+            <div
+              id="form-login"
+              className="container-fluid d-flex flex-column justify-content-center align-items-center"
+            >
               <div className="table-responsive">
                 <table className="table">
                   <thead>
@@ -58,11 +63,15 @@ const Perfil = () => {
                     </tr>
                     <tr>
                       <td className="fw-bold text-end">Última vez donado:</td>
-                      <td className="text-start">{datos.ult_vez_donado ? datos.ult_vez_donado : "N / D"}</td>
+                      <td className="text-start">
+                        {datos.ult_vez_donado ? datos.ult_vez_donado : "N / D"}
+                      </td>
                     </tr>
                     <tr>
                       <td className="fw-bold text-end">Género:</td>
-                      <td className="text-start">{datos.sexo == "H" ? "Masculino" : "Femenino"}</td>
+                      <td className="text-start">
+                        {datos.sexo == "H" ? "Masculino" : "Femenino"}
+                      </td>
                     </tr>
                     <tr>
                       <td className="fw-bold text-end">C.I.:</td>
@@ -71,9 +80,15 @@ const Perfil = () => {
                   </tbody>
                 </table>
               </div>
-              <Link to="/cambiar-contrasena"><button className="btn btn-danger">Editar información</button></Link>
-              <Link to="/cambiar-contrasena"><button className="btn btn-danger">Cambiar contraseña</button></Link>
-              <Link to="/cambiar-contrasena"><button className="btn btn-danger">Cerrrar Sesión</button></Link>
+              <Link to="/cambiar-contrasena" className="btn btn-danger">
+                Editar información
+              </Link>
+              <Link to="/cambiar-contrasena" className="btn btn-danger">
+                Cambiar contraseña
+              </Link>
+              <Link to="/cambiar-contrasena" className="btn btn-danger">
+                Cerrrar Sesión
+              </Link>
             </div>
           </div>
         </div>

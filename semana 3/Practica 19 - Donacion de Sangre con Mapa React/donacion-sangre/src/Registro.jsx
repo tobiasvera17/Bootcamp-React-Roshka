@@ -46,33 +46,32 @@ const Registro = () => {
       return alert("Debe ingresar las contraseñas correctamente");
     }
 
-    if (password != passwordSecond){
-      return alert("Las contraseñas no coinciden.")
-    } 
+    if (password != passwordSecond) {
+      return alert("Las contraseñas no coinciden.");
+    }
 
     axios
-    .post(
-      "http://192.168.16.90:8000/api/registro/",
-        {
-          "name": name,
-          "surname": surname,
-          "password": password,
-          "email": email,
-          "fecha_nacimiento": fecha_nacimiento,
-          "sexo": sexo,
-          "nro_cedula": nro_cedula
-        },
-    )
-    .then((response) => {
-      if (response.data.status == true) {
+      .post("http://192.168.16.90:8000/api/registro/", {
+        name: name,
+        surname: surname,
+        password: password,
+        email: email,
+        fecha_nacimiento: fecha_nacimiento,
+        sexo: sexo,
+        nro_cedula: nro_cedula,
+      })
+      .then((response) => {
+        if (response.data.status == true) {
           localStorage.setItem("token", response.data.token);
-          navigate("/perfil")
+          navigate("/perfil");
+        } else {
+          alert(response.data.message);
         }
-        else{
-            alert(response.data.message)
-        }
-    })
-    .catch((error) => console.log(error));
+      })
+      .catch((error) => {
+        // console.log(error);
+        alert(error.response.data.message)
+      });
   };
 
   const togglePasswordfunction = () => {
