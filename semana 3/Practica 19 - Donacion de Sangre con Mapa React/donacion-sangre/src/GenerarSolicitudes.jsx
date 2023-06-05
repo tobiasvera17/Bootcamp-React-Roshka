@@ -10,7 +10,6 @@ const GenerarSolicitudes = () => {
 
   useEffect(() => {
     if (!misDatos && token == null) {
-      console.log("aaaa")
       axios
         .get("http://192.168.16.90:8000/api/solicitudes")
         .then((response) => {
@@ -18,7 +17,6 @@ const GenerarSolicitudes = () => {
         })
         .catch((error) => console.log(error));
     } else if (misDatos && token != null) {
-      console.log("bbbb")
       axios
         .get("http://192.168.16.90:8000/api/solicitudes-protegido",{headers:{
           Authorization:`Bearer ${token}`
@@ -50,7 +48,7 @@ const GenerarSolicitudes = () => {
           >
             <div
               id="agregarSolicitud-container"
-              className="d-flex justify-content-center align-items-center"
+              className={token == null ? "d-none" : "" + "d-flex justify-content-center align-items-center"}
             >
               <Link to="/generar-solicitud">
                 <button
@@ -64,7 +62,7 @@ const GenerarSolicitudes = () => {
 
             <div
               id="misSolicitudes-container"
-              className="d-flex justify-content-center align-items-center"
+              className={token == null ? "d-none" : "" + "d-flex justify-content-center align-items-center"}
             >
               Mis solicitudes{" "}
               <input
