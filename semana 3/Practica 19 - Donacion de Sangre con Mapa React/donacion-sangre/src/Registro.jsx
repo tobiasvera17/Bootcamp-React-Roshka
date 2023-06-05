@@ -1,23 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useState } from "react";
 
 const Registro = () => {
   const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [nro_cedula, setNro_Cedula] = useState("");
+  const [sexo, setSexo] = useState("");
+  const [fecha_nacimiento, setFecha_Nacimiento] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password_confirmation, setPassword_Confirmation] = useState("");
+  const [togglePassword, setTogglePassword] = useState(false);
+  const [togglePassword_Confirmation, setTogglePassword_Confirmation] =
+    useState(false);
   let today = new Date().toISOString().slice(0, 10);
 
-  const gotoRoot = (event) => {
+  const registroFunction = (event) => {
     event.preventDefault();
-    const regex_ci = /[0-9]+/;
-
-    let name = document.querySelector("#user-name").value;
-    let surname = document.querySelector("#user-lastname").value;
-    let nro_cedula = document.querySelector("#user-ci").value;
-    let sexo = document.querySelector("#user-gender").value;
-    let fecha_nacimiento = document.querySelector("#user-birthday").value;
-    let email = document.querySelector("#user-email").value;
-    let password = document.querySelector("#user-password").value;
-    let passwordSecond = document.querySelector("#user-passwordSecond").value;
-
     if (name == "") {
       return alert("Debe ingresar el nombre correctamente");
     }
@@ -26,7 +27,7 @@ const Registro = () => {
       return alert("Debe ingresar el apellido correctamente");
     }
 
-    if (!regex_ci.test(nro_cedula)) {
+    if (!/\d+/.test(nro_cedula)) {
       return alert("Debe ingresar la cédula de identidad correctamente");
     }
 
@@ -35,18 +36,19 @@ const Registro = () => {
     }
 
     if (fecha_nacimiento == "") {
+      console.log("fecha mala");
       return alert("Debe ingresar la fecha de nacimiento correctamente");
     }
 
-    if (email == "") {
+    if (!/\w+@\w+/.test(email)) {
       return alert("Debe ingresar el email correctamente");
     }
 
-    if (password == "" || passwordSecond == "") {
-      return alert("Debe ingresar las contraseñas correctamente");
+    if (password == "" || password_confirmation == "") {
+      return alert("Debe ingresar las contraseñas correctamente.");
     }
 
-    if (password != passwordSecond) {
+    if (password != password_confirmation) {
       return alert("Las contraseñas no coinciden.");
     }
 
@@ -61,6 +63,7 @@ const Registro = () => {
         nro_cedula: nro_cedula,
       })
       .then((response) => {
+        console.log(response)
         if (response.data.status == true) {
           localStorage.setItem("token", response.data.token);
           navigate("/perfil");
@@ -70,30 +73,8 @@ const Registro = () => {
       })
       .catch((error) => {
         // console.log(error);
-        alert(error.response.data.message)
+        alert(error.response.data.message);
       });
-  };
-
-  const togglePasswordfunction = () => {
-    const togglePassword = document.querySelector("#togglePassword");
-
-    const password = document.querySelector("#user-password");
-    const type =
-      password.getAttribute("type") === "password" ? "text" : "password";
-
-    password.setAttribute("type", type);
-    togglePassword.classList.toggle("bi-eye");
-  };
-
-  const togglePasswordfunctionSecond = () => {
-    const togglePassword = document.querySelector("#togglePasswordSecond");
-
-    const password = document.querySelector("#user-passwordSecond");
-    const type =
-      password.getAttribute("type") === "password" ? "text" : "password";
-
-    password.setAttribute("type", type);
-    togglePassword.classList.toggle("bi-eye");
   };
 
   return (
@@ -116,46 +97,54 @@ const Registro = () => {
         <div id="form-registro" className="container-fluid ">
           <form>
             <div className="mb-3">
-              <label htmlFor="user-email" className="form-label">
+              <label htmlFor="user-name" className="form-label">
                 Nombre
               </label>
               <input
                 type="text"
                 className="form-control"
                 id="user-name"
+                onChange={(e) => setName(e.target.value)}
                 required
               />
             </div>
 
             <div className="mb-3">
-              <label htmlFor="user-email" className="form-label">
+              <label htmlFor="user-surname" className="form-label">
                 Apellido
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="user-lastname"
+                id="user-surname"
+                onChange={(e) => setSurname(e.target.value)}
                 required
               />
             </div>
 
             <div className="mb-3">
-              <label htmlFor="user-email" className="form-label">
+              <label htmlFor="user-ci" className="form-label">
                 Cedula de Identidad
               </label>
               <input
                 type="number"
                 className="form-control"
                 id="user-ci"
+                onChange={(e) => setNro_Cedula(e.target.value)}
                 required
               />
             </div>
 
             <div className="mb-3">
-              <label htmlFor="user-email" className="form-label">
+              <label htmlFor="user-sexo" className="form-label">
                 Género
               </label>
-              <select id="user-gender" className="form-select" required>
+              <select
+                id="user-sexo"
+                className="form-select"
+                onChange={(e) => setSexo(e.target.value)}
+                required
+              >
                 <option value="">Seleccione una opción</option>
                 <option value="H">Masculino</option>
                 <option value="M">Femenino</option>
@@ -163,13 +152,14 @@ const Registro = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="user-email" className="form-label">
+              <label htmlFor="user-fecha_nacimiento" className="form-label">
                 Fecha de Nacimiento
               </label>
               <input
                 type="date"
                 className="form-control"
-                id="user-birthday"
+                id="user-fecha_nacimiento"
+                onChange={(e) => setFecha_Nacimiento(e.target.value)}
                 max={today}
                 required
               />
@@ -184,6 +174,7 @@ const Registro = () => {
                 className="form-control"
                 id="user-email"
                 aria-describedby="emailHelp"
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <div id="emailHelp" className="form-text fw-normal">
@@ -196,32 +187,34 @@ const Registro = () => {
                 Contraseña
               </label>
               <input
-                type="password"
+                type={togglePassword ? "text" : "password"}
                 id="user-password"
                 className="form-control"
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <i
-                className="bi bi-eye-slash"
+                className={togglePassword ? "bi bi-eye-slash" : "bi-eye"}
                 id="togglePassword"
-                onClick={togglePasswordfunction}
+                onClick={() => setTogglePassword(!togglePassword)}
               ></i>
             </div>
 
             <div className="mb-3">
-              <label htmlFor="user-passwordSecond" className="form-label">
+              <label htmlFor="user-password_confirmation" className="form-label">
                 Confirmar Contraseña
               </label>
               <input
-                type="password"
-                id="user-passwordSecond"
+                type={togglePassword_Confirmation ? "text" : "password"}
+                id="user-password_confirmation"
                 className="form-control"
+                onChange={(e) => setPassword_Confirmation(e.target.value)}
                 required
               />
               <i
-                className="bi bi-eye-slash"
-                id="togglePasswordSecond"
-                onClick={togglePasswordfunctionSecond}
+                className={togglePassword_Confirmation ? "bi bi-eye-slash" : "bi-eye"}
+                id="togglePassword"
+                onClick={() => setTogglePassword_Confirmation(!togglePassword_Confirmation)}
               ></i>
             </div>
 
@@ -229,7 +222,7 @@ const Registro = () => {
               <button
                 type="submit"
                 className="btn btn-danger"
-                onClick={gotoRoot}
+                onClick={(e) => registroFunction(e)}
               >
                 Registrarse
               </button>
