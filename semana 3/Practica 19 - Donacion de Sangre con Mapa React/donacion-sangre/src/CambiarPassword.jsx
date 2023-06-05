@@ -1,60 +1,47 @@
 import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const CambiarPassword = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const [old_password, setOld_Password] = useState(null)
+  const [password, setPassword] = useState(null)
+  const [password_confirmation, setPassword_Confirmation] = useState(null)
 
-  const togglePasswordfunction = () => {
-    const togglePassword = document.querySelector("#togglePassword");
+  const togglePasswordfunction = (event) => {
+    const togglePassword = event.target;
+    let passwordInput = {}
 
-    const password = document.querySelector("#user-password");
+    if(togglePassword.id == "toggleOldPassword"){
+      passwordInput = old_password  
+    }
+    else if(togglePassword.id == "togglePassword"){
+      passwordInput = password
+    }
+    else{
+      passwordInput = password_confirmation
+    }
+
     const type =
-      password.getAttribute("type") === "password" ? "text" : "password";
+      passwordInput.getAttribute("type") === "password" ? "text" : "password";
 
-    password.setAttribute("type", type);
+    passwordInput.setAttribute("type", type);
     togglePassword.classList.toggle("bi-eye");
   };
 
-  const togglePasswordfunctionNew = () => {
-    const togglePassword = document.querySelector("#togglePasswordNew");
-
-    const password = document.querySelector("#user-passwordNew");
-    const type =
-      password.getAttribute("type") === "password" ? "text" : "password";
-
-    password.setAttribute("type", type);
-    togglePassword.classList.toggle("bi-eye");
-  };
-
-  const togglePasswordfunctionNewSecond = () => {
-    const togglePassword = document.querySelector("#togglePasswordNewSecond");
-
-    const password = document.querySelector("#user-passwordNewSecond");
-    const type =
-      password.getAttribute("type") === "password" ? "text" : "password";
-
-    password.setAttribute("type", type);
-    togglePassword.classList.toggle("bi-eye");
-  };
-
-  const changePassword = (event) => {
+  const changePasswordfunction = (event) => {
     event.preventDefault();
-    const old_password = document.getElementById("user-password").value;
-    const password = document.getElementById("user-passwordNew").value;
-    const password_confirmation = document.getElementById(
-      "user-passwordNewSecond"
-    ).value;
 
-    if (old_password == "") {
+    if (old_password.value == "") {
       return alert("Por favor ingrese su contraseña.");
     }
 
-    if (password == "") {
+    if (password.value == "") {
       return alert("Por favor ingrese su nueva contraseña.");
     }
 
-    if (password != password_confirmation) {
+    if (password.value != password_confirmation.value) {
       return alert("Las contraseña nueva no coincide con la confirmación.");
     }
 
@@ -62,8 +49,8 @@ const CambiarPassword = () => {
       .post(
         "http://192.168.16.90:8000/api/cambiar-password/",
         {
-          old_password: old_password,
-          password: password,
+          old_password: old_password.value,
+          password: password.value,
         },
         {
           headers: {
@@ -73,15 +60,14 @@ const CambiarPassword = () => {
       )
       .then((response) => {
         if (response.data.status == true) {
-          localStorage.removeItem("token");
           alert(response.data.message);
-          navigate("/login");
+          navigate("/perfil");
         } else {
           alert(response.data.message);
         }
       })
       .catch((error) => {
-        // console.log(error);
+        // console.log(error)
         alert(error.response.data.message);
       });
   };
@@ -106,53 +92,56 @@ const CambiarPassword = () => {
         <div id="form-restablecer" className="container-fluid ">
           <form>
             <div className="mb-3">
-              <label htmlFor="user-password" className="form-label">
+              <label htmlFor="user-old_password" className="form-label">
                 Contraseña anterior
+              </label>
+              <input
+                type="password"
+                id="user-old_password"
+                className="form-control"
+                onChange={(e) => setOld_Password(e.target)}
+                required
+              />
+              <i
+                className="bi bi-eye-slash"
+                id="toggleOldPassword"
+                onClick={(e) => togglePasswordfunction(e)}
+              ></i>
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="user-password" className="form-label">
+                Contraseña nueva
               </label>
               <input
                 type="password"
                 id="user-password"
                 className="form-control"
+                onChange={(e) => setPassword(e.target)}
                 required
               />
               <i
                 className="bi bi-eye-slash"
                 id="togglePassword"
-                onClick={togglePasswordfunction}
+                onClick={(e) => togglePasswordfunction(e)}
               ></i>
             </div>
 
             <div className="mb-3">
-              <label htmlFor="user-passwordNew" className="form-label">
-                Contraseña nueva
-              </label>
-              <input
-                type="password"
-                id="user-passwordNew"
-                className="form-control"
-                required
-              />
-              <i
-                className="bi bi-eye-slash"
-                id="togglePasswordNew"
-                onClick={togglePasswordfunctionNew}
-              ></i>
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="user-passwordNewSecond" className="form-label">
+              <label htmlFor="user-password_confirmation" className="form-label">
                 Confirmar contraseña nueva
               </label>
               <input
                 type="password"
-                id="user-passwordNewSecond"
+                id="user-password_confirmation"
                 className="form-control"
+                onChange={(e) => setPassword_Confirmation(e.target)}
                 required
               />
               <i
                 className="bi bi-eye-slash"
-                id="togglePasswordNewSecond"
-                onClick={togglePasswordfunctionNewSecond}
+                id="togglePasswordConfirmation"
+                onClick={(e) => togglePasswordfunction(e)}
               ></i>
             </div>
 
@@ -160,7 +149,7 @@ const CambiarPassword = () => {
               <button
                 type="submit"
                 className="btn btn-danger"
-                onClick={changePassword}
+                onClick={(e) => changePasswordfunction(e)}
               >
                 Cambiar contraseña
               </button>
