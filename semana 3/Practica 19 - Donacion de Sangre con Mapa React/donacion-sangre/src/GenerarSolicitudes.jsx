@@ -5,15 +5,37 @@ import { Link } from "react-router-dom";
 
 const GenerarSolicitudes = () => {
   const [datos, setDatos] = useState(null);
+  const [misDatos, setMisDatos] = useState(false);
+  let token = localStorage.getItem("token");
 
   useEffect(() => {
-    axios
-      .get("http://192.168.16.90:8000/api/solicitudes")
-      .then((response) => {
-        setDatos(response.data.data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    if (!misDatos && token == null) {
+      console.log("aaaa")
+      axios
+        .get("http://192.168.16.90:8000/api/solicitudes")
+        .then((response) => {
+          setDatos(response.data.data);
+        })
+        .catch((error) => console.log(error));
+    } else if (misDatos && token != null) {
+      console.log("bbbb")
+      axios
+        .get("http://192.168.16.90:8000/api/solicitudes-protegido",{headers:{
+          Authorization:`Bearer ${token}`
+        }})
+        .then((response) => {
+          setDatos(response.data.data);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      axios
+        .get("http://192.168.16.90:8000/api/solicitudes")
+        .then((response) => {
+          setDatos(response.data.data);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [misDatos, token]);
 
   return (
     <>
@@ -45,7 +67,11 @@ const GenerarSolicitudes = () => {
               className="d-flex justify-content-center align-items-center"
             >
               Mis solicitudes{" "}
-              <input id="check-misSolicitudes" type="checkbox" />
+              <input
+                id="check-misSolicitudes"
+                type="checkbox"
+                onChange={() => setMisDatos(!misDatos)}
+              />
             </div>
           </div>
 
