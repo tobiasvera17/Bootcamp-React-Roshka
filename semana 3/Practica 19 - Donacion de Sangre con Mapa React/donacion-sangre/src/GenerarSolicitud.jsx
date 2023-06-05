@@ -5,32 +5,27 @@ import { useNavigate } from "react-router-dom";
 let type = ["A+", "A-", "B+", "B-", "O+", "O-", "AB-", "AB+"];
 
 const GenerarSolicitud = () => {
-  const [locales, setLocales] = useState(null);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const [locales, setLocales] = useState("");
+  const [nombre_apellido_donatario, setNombre_Apellido_Donatario] =
+    useState("");
+  const [cedula_donatario, setCedula_Donatario] = useState("");
+  const [tipo_sangre, setTipo_Sangre] = useState("");
+  const [establecimiento, setEstablecimiento] = useState("");
+  const [volumenes_necesarios, setVolumenes_Necesarios] = useState("");
+  const [fecha_limite, setFecha_Limite] = useState("");
+  const [telefono_contacto, setTelefono_Contacto] = useState("");
+  const [solicitud, setSolicitud] = useState("");
 
   const generarSolicitud = (event) => {
     event.preventDefault(event);
-
-    const nombre_apellido_donatario = document.getElementById(
-      "nombre_apellido_donatario"
-    ).value;
-    const cedula_donatario = document.getElementById("cedula_donatario").value;
-    const tipo_sangre = document.getElementById("tipo_sangre").value;
-    const establecimiento = document.getElementById("establecimiento").value;
-    const volumenes_necesarios = document.getElementById(
-      "volumenes_necesarios"
-    ).value;
-    const fecha_limite = document.getElementById("fecha_limite").value;
-    const telefono_contacto =
-      document.getElementById("telefono_contacto").value;
-    const solicitud = document.getElementById("solicitud").value;
 
     if (nombre_apellido_donatario == "") {
       return alert("Por favor ingrese el nombre y apellido correctamente.");
     }
 
-    if (cedula_donatario == "") {
+    if (!/\d+/.test(cedula_donatario)) {
       return alert("Por favor ingrese el número de cédula correctamente.");
     }
 
@@ -57,7 +52,7 @@ const GenerarSolicitud = () => {
     if (fecha_limite == "") {
       return alert("Por favor ingrese la fecha límite correctamente.");
     }
-
+    0;
     axios
       .post(
         "http://192.168.16.90:8000/api/solicitudes/",
@@ -82,10 +77,14 @@ const GenerarSolicitud = () => {
           alert("Solicitud generada correctamente.");
           navigate("/solicitudes");
         } else {
-          alert("No se pudo generar el certificado\n" + response.message);
+          alert("No se pudo generar la solicitud\n" + response.data.message);
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        alert(
+          "No se pudo generar la solicitud.\n" + error.response.data.message
+        );
+      });
   };
 
   useEffect(() => {
@@ -129,6 +128,9 @@ const GenerarSolicitud = () => {
                     type="text"
                     className="form-control"
                     id="nombre_apellido_donatario"
+                    onChange={(e) =>
+                      setNombre_Apellido_Donatario(e.target.value)
+                    }
                     required
                   />
                 </div>
@@ -141,6 +143,7 @@ const GenerarSolicitud = () => {
                     type="number"
                     className="form-control"
                     id="cedula_donatario"
+                    onChange={(e) => setCedula_Donatario(e.target.value)}
                     required
                   />
                 </div>
@@ -149,7 +152,12 @@ const GenerarSolicitud = () => {
                   <label htmlFor="tipo_sangre" className="form-label">
                     Tipo de sangre
                   </label>
-                  <select id="tipo_sangre" className="form-select" required>
+                  <select
+                    id="tipo_sangre"
+                    className="form-select"
+                    onChange={(e) => setTipo_Sangre(e.target.value)}
+                    required
+                  >
                     <option value="">Seleccione una opción</option>
                     {type.map((item, index) => {
                       return (
@@ -165,7 +173,12 @@ const GenerarSolicitud = () => {
                   <label htmlFor="establecimiento" className="form-label">
                     Establecimiento
                   </label>
-                  <select id="establecimiento" className="form-select" required>
+                  <select
+                    id="establecimiento"
+                    className="form-select"
+                    onChange={(e) => setEstablecimiento(e.target.value)}
+                    required
+                  >
                     <option value="">Seleccione una opción</option>
                     {locales.map((item) => {
                       return (
@@ -185,6 +198,7 @@ const GenerarSolicitud = () => {
                     type="number"
                     className="form-control"
                     id="volumenes_necesarios"
+                    onChange={(e) => setVolumenes_Necesarios(e.target.value)}
                     required
                   />
                 </div>
@@ -197,6 +211,7 @@ const GenerarSolicitud = () => {
                     type="date"
                     className="form-control"
                     id="fecha_limite"
+                    onChange={(e) => setFecha_Limite(e.target.value)}
                     required
                   />
                 </div>
@@ -209,6 +224,7 @@ const GenerarSolicitud = () => {
                     type="number"
                     className="form-control"
                     id="telefono_contacto"
+                    onChange={(e) => setTelefono_Contacto(e.target.value)}
                     required
                   />
                 </div>
@@ -217,14 +233,18 @@ const GenerarSolicitud = () => {
                   <label htmlFor="solicitud" className="form-label">
                     Descripción
                   </label>
-                  <textarea className="form-control" id="solicitud"></textarea>
+                  <textarea
+                    className="form-control"
+                    id="solicitud"
+                    onChange={(e) => setSolicitud(e.target.value)}
+                  ></textarea>
                 </div>
 
                 <div className="mt-5 d-flex flex-column align-items-center justify-content-center">
                   <button
                     type="submit"
                     className="btn btn-danger"
-                    onClick={generarSolicitud}
+                    onClick={(e) => generarSolicitud(e)}
                   >
                     Generar Solicitud
                   </button>
