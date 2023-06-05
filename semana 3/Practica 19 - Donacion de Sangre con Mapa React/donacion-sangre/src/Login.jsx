@@ -6,32 +6,23 @@ const Login = () => {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
-  const togglePasswordfunction = (event) => {
-    const togglePassword = event.target;
-
-    const type =
-      password.getAttribute("type") === "password" ? "text" : "password";
-
-    password.setAttribute("type", type);
-    togglePassword.classList.toggle("bi-eye");
-  };
+  const [togglePassword, setTogglePassword] = useState(false);
 
   const login = (event) => {
     event.preventDefault();
 
-    if (!(/\w+@\w+/).test(email.value)) {
+    if (!((/\w+@\w+/).test(email))) {
       return alert("Por favor ingrese su email correctamente.");
     }
 
-    if (password.value == "") {
+    if (password == "") {
       return alert("Por favor ingrese su contraseña.");
     }
 
     axios
       .post("http://192.168.16.90:8000/api/login/", {
-        email: email.value,
-        password: password.value,
+        email: email,
+        password: password,
       })
       .then((response) => {
         if (response.data.status == true) {
@@ -75,30 +66,32 @@ const Login = () => {
                 className="form-control"
                 id="user-email"
                 aria-describedby="emailHelp"
-                onChange={(e) => setEmail(e.target)}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <div id="emailHelp" className="form-text fw-normal">
                 No compartiremos esta información con nadie más.
               </div>
             </div>
+
             <div className="mb-3">
               <label htmlFor="user-password" className="form-label">
-                Password
+                Contraseña
               </label>
               <input
-                type="password"
+                type={togglePassword ? "text" : "password"}
                 id="user-password"
                 className="form-control"
-                onChange={(e) => setPassword(e.target)}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <i
-                className="bi bi-eye-slash"
+                className={togglePassword ? "bi bi-eye-slash" : "bi-eye"}
                 id="togglePassword"
-                onClick={(e) => togglePasswordfunction(e)}
+                onClick={() => setTogglePassword(!togglePassword)}
               ></i>
             </div>
+
             <div className="mt-5 d-flex flex-column align-items-center justify-content-center">
               <button
                 type="submit"
