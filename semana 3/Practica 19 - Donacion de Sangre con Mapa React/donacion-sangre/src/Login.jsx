@@ -1,13 +1,15 @@
 import axios from "axios";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
-  const togglePasswordfunction = () => {
-    const togglePassword = document.querySelector("#togglePassword");
+  const togglePasswordfunction = (event) => {
+    const togglePassword = event.target;
 
-    const password = document.querySelector("#user-password");
     const type =
       password.getAttribute("type") === "password" ? "text" : "password";
 
@@ -17,21 +19,19 @@ const Login = () => {
 
   const login = (event) => {
     event.preventDefault();
-    const email = document.getElementById("user-email").value;
-    const password = document.getElementById("user-password").value;
 
-    if (email == "") {
-      return alert("Por favor ingrese su email.");
+    if (!(/\w+@\w+/).test(email.value)) {
+      return alert("Por favor ingrese su email correctamente.");
     }
 
-    if (password == "") {
-      return alert("Por favor ingrese su contraseña");
+    if (password.value == "") {
+      return alert("Por favor ingrese su contraseña.");
     }
 
     axios
       .post("http://192.168.16.90:8000/api/login/", {
-        email: email,
-        password: password,
+        email: email.value,
+        password: password.value,
       })
       .then((response) => {
         if (response.data.status == true) {
@@ -75,6 +75,7 @@ const Login = () => {
                 className="form-control"
                 id="user-email"
                 aria-describedby="emailHelp"
+                onChange={(e) => setEmail(e.target)}
                 required
               />
               <div id="emailHelp" className="form-text fw-normal">
@@ -89,16 +90,21 @@ const Login = () => {
                 type="password"
                 id="user-password"
                 className="form-control"
+                onChange={(e) => setPassword(e.target)}
                 required
               />
               <i
                 className="bi bi-eye-slash"
                 id="togglePassword"
-                onClick={togglePasswordfunction}
+                onClick={(e) => togglePasswordfunction(e)}
               ></i>
             </div>
             <div className="mt-5 d-flex flex-column align-items-center justify-content-center">
-              <button type="submit" className="btn btn-danger" onClick={login}>
+              <button
+                type="submit"
+                className="btn btn-danger"
+                onClick={(e) => login(e)}
+              >
                 Iniciar Sesión
               </button>
               <Link to={"/registro"}>
