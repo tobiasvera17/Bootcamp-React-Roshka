@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const GenerarCertificado = () => {
-  const [datos, setDatos] = useState(null);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const [datos, setDatos] = useState(null);
+  const [fecha_donacion, setFecha_Donacion] = useState(null);
+  const [local_donacion, setLocal_Donacion] = useState(null);
   let today = new Date().toISOString().slice(0, 10);
 
   useEffect(() => {
@@ -20,9 +22,6 @@ const GenerarCertificado = () => {
   const generarCertificado = (event) => {
     event.preventDefault();
 
-    const fecha_donacion = document.querySelector("#fecha_donacion").value;
-    const local_donacion = document.querySelector("#local_donacion").value;
-
     if (fecha_donacion == "") {
       return alert("Por favor ingrese una fecha de donación.");
     }
@@ -35,27 +34,28 @@ const GenerarCertificado = () => {
       .post(
         "http://192.168.16.90:8000/api/certificados",
         {
-          fecha_donacion: "2022-06-01",
-          local_donacion_id: 1,
+          fecha_donacion: fecha_donacion,
+          local_donacion_id: local_donacion,
         },
         {
           headers: {
-            Authorization:
-              `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       )
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         if (response.data.status == true) {
-            alert("Certificado generado correctamente.");
-            navigate("/certificados")
-          }
-          else{
-              alert("No se pudo generar el certificado\n" + response.data.message)
-          }
+          alert("Certificado generado correctamente.");
+          navigate("/certificados");
+        } else {
+          alert("No se pudo generar el certificado\n" + response.data.message);
+        }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        alert(error.response.data.message);
+      });
   };
 
   return (
@@ -88,6 +88,7 @@ const GenerarCertificado = () => {
                     className="form-control"
                     id="fecha_donacion"
                     max={today}
+                    onChange={(e) => setFecha_Donacion(e.target.value)}
                     required
                   />
                 </div>
@@ -96,7 +97,12 @@ const GenerarCertificado = () => {
                   <label htmlFor="local_donacion" className="form-label">
                     Centro de donación:
                   </label>
-                  <select id="local_donacion" className="form-select" required>
+                  <select
+                    id="local_donacion"
+                    className="form-select"
+                    onChange={(e) => setLocal_Donacion(e.target.value)}
+                    required
+                  >
                     <option value="">Seleccione una opción</option>
                     {datos.map((item) => {
                       return (
@@ -112,7 +118,7 @@ const GenerarCertificado = () => {
                   <button
                     type="submit"
                     className="btn btn-danger"
-                    onClick={generarCertificado}
+                    onClick={(e) => generarCertificado(e)}
                   >
                     Generar Certificado
                   </button>
