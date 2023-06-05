@@ -5,43 +5,26 @@ import { useNavigate } from "react-router-dom";
 const CambiarPassword = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const [old_password, setOld_Password] = useState(null)
-  const [password, setPassword] = useState(null)
-  const [password_confirmation, setPassword_Confirmation] = useState(null)
+  const [old_password, setOld_Password] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [password_confirmation, setPassword_Confirmation] = useState(null);
+  const [toggleOld_Password, setToggleOld_Password] = useState(false);
+  const [togglePassword, setTogglePassword] = useState(false);
+  const [togglePassword_Confirmation, setTogglePassword_Confirmation] = useState(false);
 
-  const togglePasswordfunction = (event) => {
-    const togglePassword = event.target;
-    let passwordInput = {}
 
-    if(togglePassword.id == "toggleOldPassword"){
-      passwordInput = old_password  
-    }
-    else if(togglePassword.id == "togglePassword"){
-      passwordInput = password
-    }
-    else{
-      passwordInput = password_confirmation
-    }
-
-    const type =
-      passwordInput.getAttribute("type") === "password" ? "text" : "password";
-
-    passwordInput.setAttribute("type", type);
-    togglePassword.classList.toggle("bi-eye");
-  };
-
-  const changePasswordfunction = (event) => {
+  const changePasswordFunction = (event) => {
     event.preventDefault();
 
-    if (old_password.value == "") {
+    if (old_password == "") {
       return alert("Por favor ingrese su contraseña.");
     }
 
-    if (password.value == "") {
+    if (password == "") {
       return alert("Por favor ingrese su nueva contraseña.");
     }
 
-    if (password.value != password_confirmation.value) {
+    if (password != password_confirmation) {
       return alert("Las contraseña nueva no coincide con la confirmación.");
     }
 
@@ -49,8 +32,8 @@ const CambiarPassword = () => {
       .post(
         "http://192.168.16.90:8000/api/cambiar-password/",
         {
-          old_password: old_password.value,
-          password: password.value,
+          old_password: old_password,
+          password: password,
         },
         {
           headers: {
@@ -92,56 +75,56 @@ const CambiarPassword = () => {
         <div id="form-restablecer" className="container-fluid ">
           <form>
             <div className="mb-3">
-              <label htmlFor="user-old_password" className="form-label">
-                Contraseña anterior
+              <label htmlFor="user-password" className="form-label">
+                Contraseña
               </label>
               <input
-                type="password"
+                type={toggleOld_Password ? "text" : "password"}
                 id="user-old_password"
                 className="form-control"
-                onChange={(e) => setOld_Password(e.target)}
+                onChange={(e) => setOld_Password(e.target.value)}
                 required
               />
               <i
-                className="bi bi-eye-slash"
-                id="toggleOldPassword"
-                onClick={(e) => togglePasswordfunction(e)}
+                className={toggleOld_Password ? "bi bi-eye-slash" : "bi-eye"}
+                id="toggleOld_Password"
+                onClick={() => setToggleOld_Password(!toggleOld_Password)}
               ></i>
             </div>
 
             <div className="mb-3">
               <label htmlFor="user-password" className="form-label">
-                Contraseña nueva
+                Contraseña
               </label>
               <input
-                type="password"
+                type={togglePassword ? "text" : "password"}
                 id="user-password"
                 className="form-control"
-                onChange={(e) => setPassword(e.target)}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <i
-                className="bi bi-eye-slash"
+                className={togglePassword ? "bi bi-eye-slash" : "bi-eye"}
                 id="togglePassword"
-                onClick={(e) => togglePasswordfunction(e)}
+                onClick={() => setTogglePassword(!togglePassword)}
               ></i>
             </div>
 
             <div className="mb-3">
               <label htmlFor="user-password_confirmation" className="form-label">
-                Confirmar contraseña nueva
+                Contraseña
               </label>
               <input
-                type="password"
+                type={togglePassword_Confirmation ? "text" : "password"}
                 id="user-password_confirmation"
                 className="form-control"
-                onChange={(e) => setPassword_Confirmation(e.target)}
+                onChange={(e) => setPassword_Confirmation(e.target.value)}
                 required
               />
               <i
-                className="bi bi-eye-slash"
-                id="togglePasswordConfirmation"
-                onClick={(e) => togglePasswordfunction(e)}
+                className={togglePassword_Confirmation ? "bi bi-eye-slash" : "bi-eye"}
+                id="togglePassword_Confirmation"
+                onClick={() => setTogglePassword_Confirmation(!togglePassword_Confirmation)}
               ></i>
             </div>
 
@@ -149,7 +132,7 @@ const CambiarPassword = () => {
               <button
                 type="submit"
                 className="btn btn-danger"
-                onClick={(e) => changePasswordfunction(e)}
+                onClick={(e) => changePasswordFunction(e)}
               >
                 Cambiar contraseña
               </button>
