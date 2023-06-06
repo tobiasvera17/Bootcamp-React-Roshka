@@ -2,11 +2,12 @@ import Info from "./Info";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const GenerarSolicitudes = () => {
   const [datos, setDatos] = useState(null);
   const [misDatos, setMisDatos] = useState(false);
-  let token = localStorage.getItem("token");
+  const token = useSelector((state) => state.token);
 
   useEffect(() => {
     if (!misDatos && token == null) {

@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const GenerarCertificado = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  const token = useSelector((state) => state.token);
   const [datos, setDatos] = useState(null);
   const [fecha_donacion, setFecha_Donacion] = useState(null);
   const [local_donacion, setLocal_Donacion] = useState(null);

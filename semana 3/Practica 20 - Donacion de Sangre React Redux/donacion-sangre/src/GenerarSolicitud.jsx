@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-let type = ["A+", "A-", "B+", "B-", "O+", "O-", "AB-", "AB+"];
+import { useSelector } from "react-redux";
 
 const GenerarSolicitud = () => {
+  let type = ["A+", "A-", "B+", "B-", "O+", "O-", "AB-", "AB+"];
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
   const [locales, setLocales] = useState("");
   const [nombre_apellido_donatario, setNombre_Apellido_Donatario] =
     useState("");
@@ -17,6 +16,7 @@ const GenerarSolicitud = () => {
   const [fecha_limite, setFecha_Limite] = useState("");
   const [telefono_contacto, setTelefono_Contacto] = useState("");
   const [solicitud, setSolicitud] = useState("");
+  const token = useSelector((state) => state.token);
 
   const generarSolicitud = (event) => {
     event.preventDefault(event);

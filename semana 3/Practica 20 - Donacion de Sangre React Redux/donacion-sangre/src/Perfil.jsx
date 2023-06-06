@@ -22,12 +22,12 @@ const Perfil = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [token]);
+  }, []);
 
   const cerrarSesion = () => {
     if (confirm("Desea cerrar su sesión?")) {
       // localStorage.removeItem("token");
-      dispatch({type: 'nullToken'})
+      dispatch({ type: "nullToken" });
       navigate("/login");
     }
   };

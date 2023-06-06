@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CambiarPassword = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
   const [old_password, setOld_Password] = useState(null);
   const [password, setPassword] = useState(null);
   const [password_confirmation, setPassword_Confirmation] = useState(null);
@@ -12,6 +12,7 @@ const CambiarPassword = () => {
   const [togglePassword, setTogglePassword] = useState(false);
   const [togglePassword_Confirmation, setTogglePassword_Confirmation] =
     useState(false);
+  const token = useSelector((state) => state.token);
 
   const changePasswordFunction = (event) => {
     event.preventDefault();

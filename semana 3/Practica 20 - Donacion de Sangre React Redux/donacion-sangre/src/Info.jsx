@@ -1,5 +1,5 @@
 import "./style.css";
-import axios from "axios";
+// import axios from "axios";
 
 let type = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
 

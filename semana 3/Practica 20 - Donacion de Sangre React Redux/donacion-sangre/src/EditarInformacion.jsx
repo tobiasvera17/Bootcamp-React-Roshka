@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const EditarInformacion = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const EditarInformacion = () => {
   const [fecha_nacimiento, setFecha_Nacimiento] = useState(null);
   const [sexo, setSexo] = useState(null);
 
-  const token = localStorage.getItem("token");
+  const token = useSelector((state) => state.token);
   let today = new Date().toISOString().slice(0, 10);
 
   const generos = [

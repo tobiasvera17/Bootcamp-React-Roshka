@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import InfoCertificado from "./InfoCertificado";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Certificados = () => {
   const [datos, setDatos] = useState(null);
-  const token = localStorage.getItem("token");
+  const token = useSelector((state) => state.token);
 
   useEffect(() => {
     axios
