@@ -1,0 +1,25 @@
+.header-container {
+    padding: 20px;
+}
+
+.logo-header-container {
+    width: 20%;
+}
+
+.img-logo {
+    width: 50%;
+    height: 50%;
+}
+
+.buttons-header-container {
+    width: 80%;
+}
+
+.button-header {
+    background-color: transparent;
+    border: none;
+    font-weight: 500;
+    color: white;
+    margin-right: 20px;
+    font-size: 15px;
+}
