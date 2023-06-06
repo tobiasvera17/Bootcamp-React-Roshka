@@ -6,11 +6,11 @@ import { useSelector } from "react-redux";
 const EditarInformacion = () => {
   const navigate = useNavigate();
   const [datos, setDatos] = useState(null);
-  const [name, setName] = useState(null);
-  const [surname, setSurname] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [fecha_nacimiento, setFecha_Nacimiento] = useState(null);
-  const [sexo, setSexo] = useState(null);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [fecha_nacimiento, setFecha_Nacimiento] = useState("");
+  const [sexo, setSexo] = useState("");
 
   const token = useSelector((state) => state.token);
   let today = new Date().toISOString().slice(0, 10);
@@ -73,8 +73,6 @@ const EditarInformacion = () => {
       });
   };
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
     axios
       .get("http://192.168.16.90:8000/api/user/", {
         headers: {
@@ -133,9 +131,10 @@ const EditarInformacion = () => {
                         <td className="fw-bold text-end">Nombre:</td>
                         <td className="text-start">
                           <p
-                            contentEditable="true"
+                            contentEditable
+                            suppressContentEditableWarning
                             id="name"
-                            onChange={(e) => setName(e.target.name)}
+                            onBlur={(e) => setName(e.target.innerHTML)}
                           >
                             {name}
                           </p>
@@ -147,7 +146,7 @@ const EditarInformacion = () => {
                           <p
                             contentEditable="true"
                             id="surname"
-                            onChange={(e) => setSurname(e.target.value)}
+                            onBlur={(e) => setSurname(e.target.innerHTML)}
                           >
                             {surname}
                           </p>
@@ -159,7 +158,7 @@ const EditarInformacion = () => {
                           <p
                             contentEditable="true"
                             id="email"
-                            onChange={(e) => setEmail(e.target.value)}
+                            onBlur={(e) => setEmail(e.target.innerHTML)}
                           >
                             {email}
                           </p>
