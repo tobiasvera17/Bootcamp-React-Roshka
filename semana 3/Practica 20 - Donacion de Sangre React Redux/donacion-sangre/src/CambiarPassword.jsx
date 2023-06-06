@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 
 const CambiarPassword = () => {
   const navigate = useNavigate();
-  const [old_password, setOld_Password] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [password_confirmation, setPassword_Confirmation] = useState(null);
+  const [old_password, setOld_Password] = useState("");
+  const [password, setPassword] = useState("");
+  const [password_confirmation, setPassword_Confirmation] = useState("");
   const [toggleOld_Password, setToggleOld_Password] = useState(false);
   const [togglePassword, setTogglePassword] = useState(false);
   const [togglePassword_Confirmation, setTogglePassword_Confirmation] =
