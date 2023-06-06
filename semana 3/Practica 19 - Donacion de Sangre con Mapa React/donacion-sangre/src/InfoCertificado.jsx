@@ -22,7 +22,7 @@ const InfoCertificado = (props) => {
             <tbody>
               <tr>
                 <td>Establecimiento</td>
-                <td>
+                <td className="text-end fw-bold">
                   {props.data.local_donacion != null
                     ? props.data.local_donacion
                     : "N/D"}
@@ -30,7 +30,7 @@ const InfoCertificado = (props) => {
               </tr>
               <tr>
                 <td>Apellido:</td>
-                <td>
+                <td className="text-end fw-bold">
                   {props.data.user.surname != null
                     ? props.data.user.surname
                     : "N/D"}
@@ -38,13 +38,13 @@ const InfoCertificado = (props) => {
               </tr>
               <tr>
                 <td>Nombre:</td>
-                <td>
+                <td className="text-end fw-bold">
                   {props.data.user.name != null ? props.data.user.name : "N/D"}
                 </td>
               </tr>
               <tr>
                 <td>Género:</td>
-                <td>
+                <td className="text-end fw-bold">
                   {props.data.user.sexo != null
                     ? props.data.user.sexo == "H"
                       ? "Masculino"
@@ -54,7 +54,7 @@ const InfoCertificado = (props) => {
               </tr>
               <tr>
                 <td>Número de cédula:</td>
-                <td>
+                <td className="text-end fw-bold">
                   {props.data.user.nro_cedula != null
                     ? props.data.user.nro_cedula
                     : "N/D"}
@@ -62,7 +62,7 @@ const InfoCertificado = (props) => {
               </tr>
               <tr>
                 <td>Fecha de donación:</td>
-                <td>
+                <td className="text-end fw-bold">
                   {props.data.fecha_donacion != null
                     ? props.data.fecha_donacion
                     : "N/D"}
