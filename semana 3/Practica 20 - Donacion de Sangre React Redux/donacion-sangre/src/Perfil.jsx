@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Perfil = () => {
   const navigate = useNavigate();
@@ -25,12 +27,30 @@ const Perfil = () => {
   }, []);
 
   const cerrarSesion = () => {
-    if (confirm("Desea cerrar su sesión?")) {
-      // localStorage.removeItem("token");
-      dispatch({ type: "nullToken" });
-      navigate("/login");
-    }
+    Swal.fire({
+      title: 'Desea cerrar su sesión?',
+      icon: 'warning',
+      showCancelButton: true,
+      allowOutsideClick:false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Cerrar Sesión'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({ type: "nullToken" });
+        Swal.fire({icon:'success', text:'Se ha cerrado su sesión.'})
+        navigate("/login");
+      }
+
+    })
+
+    // if (confirm("Desea cerrar su sesión?")) {
+    //   // localStorage.removeItem("token");
+    //   dispatch({ type: "nullToken" });
+    //   navigate("/login");
+    // }
   };
+
 
   return (
     <>
