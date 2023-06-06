@@ -22,7 +22,7 @@ const Perfil = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [token]);
 
   const cerrarSesion = () => {
     if (confirm("Desea cerrar su sesión?")) {
