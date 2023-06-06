@@ -50,7 +50,7 @@ function Info(props) {
       <div
         key={props.id}
         id={"info-container-" + String(props.idContainer)}
-        className="info-container d-flex flex-column justify-content-center align-items-center"
+        className="info-container d-flex flex-column justify-content-center align-items-center container-fluid"
       >
         <div className="header-info-container container-fluid d-flex justify-content-center align-items-center">
           <div className="title-header-info-container">
@@ -80,7 +80,7 @@ function Info(props) {
             </a>
           </div>
         </div>
-        <div className="main-info-container container-fluid">
+        <div className="main-info-container container-fluid table-responsive">
           <table className="table">
             <thead className="d-none">
               <tr>

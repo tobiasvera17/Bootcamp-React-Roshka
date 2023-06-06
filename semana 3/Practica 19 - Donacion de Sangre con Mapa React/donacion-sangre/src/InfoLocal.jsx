@@ -3,15 +3,15 @@ const InfoLocal = (props) => {
     <>
       <div
         id={"info-container-" + String(props.idContainer)}
-        className="info-container d-flex flex-column justify-content-center align-items-center"
+        className="info-container d-flex flex-column justify-content-center align-items-center container-fluid"
       >
-        <div className="header-info-container container-fluid d-flex">
+        <div className="header-info-container container-fluid">
           <div className="title-header-info-container">
             {props.data.local_donacion}
           </div>
         </div>
 
-        <div className="main-info-container container-fluid">
+        <div className="main-info-container container-fluid table-responsive">
           <table className="table">
             <thead className="d-none">
               <tr>
@@ -41,7 +41,7 @@ const InfoLocal = (props) => {
           </table>
         </div>
 
-        <div className="footer-info-container container-fluid fw-bold row text-center">
+        <div className="footer-info-container container-fluid fw-bold d-flex align-items-center justify-content-center text-center">
           <div className="col">
             <a href="#" className="link link-danger">
               Ver más
