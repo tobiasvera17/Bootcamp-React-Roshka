@@ -10,8 +10,8 @@ const CambiarPassword = () => {
   const [password_confirmation, setPassword_Confirmation] = useState(null);
   const [toggleOld_Password, setToggleOld_Password] = useState(false);
   const [togglePassword, setTogglePassword] = useState(false);
-  const [togglePassword_Confirmation, setTogglePassword_Confirmation] = useState(false);
-
+  const [togglePassword_Confirmation, setTogglePassword_Confirmation] =
+    useState(false);
 
   const changePasswordFunction = (event) => {
     event.preventDefault();
@@ -111,7 +111,10 @@ const CambiarPassword = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="user-password_confirmation" className="form-label">
+              <label
+                htmlFor="user-password_confirmation"
+                className="form-label"
+              >
                 Contraseña
               </label>
               <input
@@ -122,9 +125,13 @@ const CambiarPassword = () => {
                 required
               />
               <i
-                className={togglePassword_Confirmation ? "bi bi-eye-slash" : "bi-eye"}
+                className={
+                  togglePassword_Confirmation ? "bi bi-eye-slash" : "bi-eye"
+                }
                 id="togglePassword_Confirmation"
-                onClick={() => setTogglePassword_Confirmation(!togglePassword_Confirmation)}
+                onClick={() =>
+                  setTogglePassword_Confirmation(!togglePassword_Confirmation)
+                }
               ></i>
             </div>
 

@@ -11,7 +11,7 @@ const Login = () => {
   const login = (event) => {
     event.preventDefault();
 
-    if (!((/\w+@\w+/).test(email))) {
+    if (!/\w+@\w+/.test(email)) {
       return alert("Por favor ingrese su email correctamente.");
     }
 

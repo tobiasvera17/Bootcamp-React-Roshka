@@ -18,7 +18,7 @@ const Certificados = () => {
         setDatos(response.data.data);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [token]);
 
   return (
     <>

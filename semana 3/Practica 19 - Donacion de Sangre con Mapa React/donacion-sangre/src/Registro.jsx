@@ -63,7 +63,7 @@ const Registro = () => {
         nro_cedula: nro_cedula,
       })
       .then((response) => {
-        console.log(response)
+        console.log(response);
         if (response.data.status == true) {
           localStorage.setItem("token", response.data.token);
           navigate("/perfil");
@@ -201,7 +201,10 @@ const Registro = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="user-password_confirmation" className="form-label">
+              <label
+                htmlFor="user-password_confirmation"
+                className="form-label"
+              >
                 Confirmar Contraseña
               </label>
               <input
@@ -212,9 +215,13 @@ const Registro = () => {
                 required
               />
               <i
-                className={togglePassword_Confirmation ? "bi bi-eye-slash" : "bi-eye"}
+                className={
+                  togglePassword_Confirmation ? "bi bi-eye-slash" : "bi-eye"
+                }
                 id="togglePassword"
-                onClick={() => setTogglePassword_Confirmation(!togglePassword_Confirmation)}
+                onClick={() =>
+                  setTogglePassword_Confirmation(!togglePassword_Confirmation)
+                }
               ></i>
             </div>
 

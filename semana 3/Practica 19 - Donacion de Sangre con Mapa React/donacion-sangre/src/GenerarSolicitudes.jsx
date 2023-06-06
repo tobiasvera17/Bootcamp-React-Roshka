@@ -18,9 +18,11 @@ const GenerarSolicitudes = () => {
         .catch((error) => console.log(error));
     } else if (misDatos && token != null) {
       axios
-        .get("http://192.168.16.90:8000/api/solicitudes-protegido",{headers:{
-          Authorization:`Bearer ${token}`
-        }})
+        .get("http://192.168.16.90:8000/api/solicitudes-protegido", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           setDatos(response.data.data);
         })
@@ -48,7 +50,11 @@ const GenerarSolicitudes = () => {
           >
             <div
               id="agregarSolicitud-container"
-              className={token == null ? "d-none" : "" + "d-flex justify-content-center align-items-center"}
+              className={
+                token == null
+                  ? "d-none"
+                  : "" + "d-flex justify-content-center align-items-center"
+              }
             >
               <Link to="/generar-solicitud">
                 <button
@@ -62,7 +68,11 @@ const GenerarSolicitudes = () => {
 
             <div
               id="misSolicitudes-container"
-              className={token == null ? "d-none" : "" + "d-flex justify-content-center align-items-center"}
+              className={
+                token == null
+                  ? "d-none"
+                  : "" + "d-flex justify-content-center align-items-center"
+              }
             >
               Mis solicitudes{" "}
               <input

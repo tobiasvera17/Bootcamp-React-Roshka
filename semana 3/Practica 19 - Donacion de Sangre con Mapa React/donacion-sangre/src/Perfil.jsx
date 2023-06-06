@@ -94,7 +94,9 @@ const Perfil = () => {
               <Link to="/cambiar-contrasena" className="btn btn-danger">
                 Cambiar contraseña
               </Link>
-              <button className="btn btn-danger" onClick={cerrarSesion}>Cerrrar Sesión</button>
+              <button className="btn btn-danger" onClick={cerrarSesion}>
+                Cerrrar Sesión
+              </button>
             </div>
           </div>
         </div>

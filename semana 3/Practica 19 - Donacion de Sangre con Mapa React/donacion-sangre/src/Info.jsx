@@ -1,8 +1,25 @@
 import "./style.css";
+import axios from "axios";
 
 let type = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
 
 function Info(props) {
+  let token = localStorage.getItem("token");
+
+  // const eliminarSolicitud = () => {
+  //   if (token != null) {
+  //     axios
+  //       .delete("http://192.168.16.90:8000/api/solicitudes/1", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       })
+  //       .then((response) => {
+  //         setDatos(response.data.data);
+  //       })
+  //       .catch((error) => console.log(error));
+  //   }
+  // };
   let link_whatsapp = String(
     `https://api.whatsapp.com/send?text=*SOLICITUD DONACIÓN DE SANGRE*\n` +
       `Nombre Donatario: ` +
@@ -42,10 +59,12 @@ function Info(props) {
           <div className="delete-header-info-container text-center">
             <button
               className={
-                "btn btn-link btn-sm btn-delete btn-delete-" +
-                String(props.idContainer)
+                token == null
+                  ? "d-none"
+                  : "" +
+                    "btn btn-link btn-sm btn-delete btn-delete-" +
+                    String(props.idContainer)
               }
-              disabled
             >
               <i className="bi bi-trash3-fill icon"></i>
             </button>
@@ -54,6 +73,7 @@ function Info(props) {
             <a
               className="btn btn-link btn-sm btn-share"
               target="_blank"
+              rel="noreferrer"
               href={link_whatsapp}
             >
               <i className="bi bi-share-fill icon"></i>
