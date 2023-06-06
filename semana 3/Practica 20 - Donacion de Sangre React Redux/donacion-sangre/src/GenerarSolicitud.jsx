@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 
 const GenerarSolicitud = () => {
   let type = ["A+", "A-", "B+", "B-", "O+", "O-", "AB-", "AB+"];
@@ -22,49 +23,53 @@ const GenerarSolicitud = () => {
     event.preventDefault(event);
 
     if (nombre_apellido_donatario == "") {
-      return alert("Por favor ingrese el nombre y apellido correctamente.");
+      return toast.error(
+        "Por favor ingrese el nombre y apellido correctamente."
+      );
     }
 
-    if (!/\d+/.test(cedula_donatario)) {
-      return alert("Por favor ingrese el número de cédula correctamente.");
+    if (!/\d+/.test(cedula_donatario) || cedula_donatario <= 0) {
+      return toast.error(
+        "Por favor ingrese el número de cédula correctamente."
+      );
     }
 
     if (tipo_sangre == "") {
-      return alert("Por favor ingrese el tipo de sangre correctamente.");
+      return toast.error("Por favor ingrese el tipo de sangre correctamente.");
     }
 
     if (establecimiento == "") {
-      return alert("Por favor ingrese el establecimiento correctamente.");
+      return toast.error("Por favor ingrese el establecimiento correctamente.");
     }
 
-    if (volumenes_necesarios == "") {
-      return alert("Por favor ingrese el volumen correctamente.");
+    if (volumenes_necesarios == "" || volumenes_necesarios <= 0) {
+      return toast.error("Por favor ingrese el volumen correctamente.");
     }
 
     if (fecha_limite == "") {
-      return alert("Por favor ingrese la fecha límite correctamente.");
+      return toast.error("Por favor ingrese la fecha límite correctamente.");
     }
 
     if (telefono_contacto == "") {
-      return alert("Por favor ingrese el teléfono correctamente.");
+      return toast.error("Por favor ingrese el teléfono correctamente.");
     }
 
     if (fecha_limite == "") {
-      return alert("Por favor ingrese la fecha límite correctamente.");
+      return toast.error("Por favor ingrese la fecha límite correctamente.");
     }
-    0;
+
     axios
       .post(
         "http://192.168.16.90:8000/api/solicitudes/",
         {
-          solicitud: solicitud,
-          fecha_limite: fecha_limite,
-          volumenes_necesarios: volumenes_necesarios,
-          nombre_apellido_donatario: nombre_apellido_donatario,
-          cedula_donatario: cedula_donatario,
-          telefono_contacto: telefono_contacto,
+          solicitud,
+          fecha_limite,
+          volumenes_necesarios,
+          nombre_apellido_donatario,
+          cedula_donatario,
+          telefono_contacto,
           tipo_sangre: Number(tipo_sangre),
-          establecimiento: establecimiento,
+          establecimiento,
         },
         {
           headers: {
@@ -74,14 +79,12 @@ const GenerarSolicitud = () => {
       )
       .then((response) => {
         if (response.status == "200") {
-          alert("Solicitud generada correctamente.");
+          toast.success("Solicitud generada correctamente.");
           navigate("/solicitudes");
-        } else {
-          alert("No se pudo generar la solicitud\n" + response.data.message);
         }
       })
       .catch((error) => {
-        alert(
+        toast.error(
           "No se pudo generar la solicitud.\n" + error.response.data.message
         );
       });
@@ -158,7 +161,9 @@ const GenerarSolicitud = () => {
                     onChange={(e) => setTipo_Sangre(e.target.value)}
                     required
                   >
-                    <option value="">Seleccione una opción</option>
+                    <option value="" disabled>
+                      Seleccione una opción
+                    </option>
                     {type.map((item, index) => {
                       return (
                         <option key={index} value={index + 1}>
@@ -179,7 +184,9 @@ const GenerarSolicitud = () => {
                     onChange={(e) => setEstablecimiento(e.target.value)}
                     required
                   >
-                    <option value="">Seleccione una opción</option>
+                    <option value="" disabled>
+                      Seleccione una opción
+                    </option>
                     {locales.map((item) => {
                       return (
                         <option key={item.id} value={item.local_donacion}>

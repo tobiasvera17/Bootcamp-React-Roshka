@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,30 +15,29 @@ const Login = () => {
     event.preventDefault();
 
     if (!/\w+@\w+/.test(email)) {
-      return alert("Por favor ingrese su email correctamente.");
+      return toast.error("Por favor ingrese su email correctamente.");
     }
 
     if (password == "") {
-      return alert("Por favor ingrese su contraseña.");
+      return toast.error("Por favor ingrese su contraseña.");
     }
 
     axios
       .post("http://192.168.16.90:8000/api/login/", {
-        email: email,
-        password: password,
+        email,
+        password,
       })
       .then((response) => {
         if (response.data.status == true) {
           // localStorage.setItem("token", response.data.token);
           dispatch({ type: "setToken", payload: response.data.token });
           navigate("/perfil");
-        } else {
-          alert(response.data.message);
+          toast.success("Ingresó correctamente.");
         }
       })
       .catch((error) => {
         // console.log(error);
-        alert(error.response.data.message);
+        toast.error(error.response.data.message);
       });
   };
 

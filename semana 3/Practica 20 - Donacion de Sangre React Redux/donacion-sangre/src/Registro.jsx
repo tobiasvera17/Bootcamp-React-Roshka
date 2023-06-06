@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 const Registro = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [nro_cedula, setNro_Cedula] = useState("");
@@ -20,60 +23,56 @@ const Registro = () => {
   const registroFunction = (event) => {
     event.preventDefault();
     if (name == "") {
-      return alert("Debe ingresar el nombre correctamente");
+      return toast.error("Debe ingresar el nombre correctamente");
     }
 
     if (surname == "") {
-      return alert("Debe ingresar el apellido correctamente");
+      return toast.error("Debe ingresar el apellido correctamente");
     }
 
     if (!/\d+/.test(nro_cedula)) {
-      return alert("Debe ingresar la cédula de identidad correctamente");
+      return toast.error("Debe ingresar la cédula de identidad correctamente");
     }
 
     if (sexo == "") {
-      return alert("Debe ingresar el género correctamente");
+      return toast.error("Debe ingresar el género correctamente");
     }
 
     if (fecha_nacimiento == "") {
-      console.log("fecha mala");
-      return alert("Debe ingresar la fecha de nacimiento correctamente");
+      return toast.error("Debe ingresar la fecha de nacimiento correctamente");
     }
 
     if (!/\w+@\w+/.test(email)) {
-      return alert("Debe ingresar el email correctamente");
+      return toast.error("Debe ingresar el email correctamente");
     }
 
-    if (password == "" || password_confirmation == "") {
-      return alert("Debe ingresar las contraseñas correctamente.");
+    if (password == "") {
+      return toast.error("Debe ingresar las contraseñas correctamente.");
     }
 
     if (password != password_confirmation) {
-      return alert("Las contraseñas no coinciden.");
+      return toast.error("Las contraseñas no coinciden.");
     }
 
     axios
       .post("http://192.168.16.90:8000/api/registro/", {
-        name: name,
-        surname: surname,
-        password: password,
-        email: email,
-        fecha_nacimiento: fecha_nacimiento,
-        sexo: sexo,
-        nro_cedula: nro_cedula,
+        name,
+        surname,
+        password,
+        email,
+        fecha_nacimiento,
+        sexo,
+        nro_cedula,
       })
       .then((response) => {
-        console.log(response);
         if (response.data.status == true) {
-          localStorage.setItem("token", response.data.token);
+          dispatch({ type: "setToken", payload: response.data.token });
           navigate("/perfil");
-        } else {
-          alert(response.data.message);
+          toast.success("Registrado correctamente.");
         }
       })
       .catch((error) => {
-        // console.log(error);
-        alert(error.response.data.message);
+        toast.error(error.response.data.message);
       });
   };
 

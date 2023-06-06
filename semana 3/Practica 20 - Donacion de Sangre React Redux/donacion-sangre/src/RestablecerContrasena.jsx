@@ -1,31 +1,37 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useState } from "react";
 
 const RestablecerContrasena = () => {
   const navigate = useNavigate();
-  function goToRoot(event) {
+  const [email, setEmail] = useState("");
+
+  const restablecerContrasenaFunction = (event) => {
     event.preventDefault();
     const regex = /\w+@\w/;
-    const email = document.getElementById("user-email").value;
 
     if (!regex.test(email)) {
-      return alert("Por favor introduzca los datos requeridos correctamente.");
+      return toast.error(
+        "Por favor introduzca los datos requeridos correctamente."
+      );
     }
 
     axios
       .post("http://192.168.16.90:8000/api/reset-password/", {
-        email: email,
+        email,
       })
       .then((response) => {
+        console.log(response);
         if (response.status == 200) {
-          alert(response.data.message);
           navigate("/login");
-        } else {
-          alert(response.data.message);
+          toast.success(response.data.message);
         }
       })
-      .catch((error) => console.log(error));
-  }
+      .catch(() => {
+        toast.error("Ocurrió un error, por favor inténtelo de nuevo.");
+      });
+  };
 
   return (
     <div
@@ -54,7 +60,7 @@ const RestablecerContrasena = () => {
                 type="email"
                 className="form-control"
                 id="user-email"
-                aria-describedby="emailHelp"
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -62,7 +68,7 @@ const RestablecerContrasena = () => {
               <button
                 type="submit"
                 className="btn btn-danger"
-                onClick={goToRoot}
+                onClick={(e) => restablecerContrasenaFunction(e)}
               >
                 Restablecer Contraseña
               </button>

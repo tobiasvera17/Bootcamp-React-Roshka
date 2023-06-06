@@ -21,23 +21,23 @@ const EditarInformacion = () => {
     const regexEmail = /\w+@\w+/;
 
     if (name == "") {
-      return alert("Por favor ingrese su nombre.");
+      return toast.error("Por favor ingrese su nombre.");
     }
 
     if (surname == "") {
-      return alert("Por favor ingrese su apellido.");
+      return toast.error("Por favor ingrese su apellido.");
     }
 
     if (!regexEmail.test(email)) {
-      return alert("Por favor ingrese su email correctamente.");
+      return toast.error("Por favor ingrese su email correctamente.");
     }
 
     if (fecha_nacimiento == "") {
-      alert("Por favor ingrese su fecha de nacimiento.");
+      return toast.error("Por favor ingrese su fecha de nacimiento.");
     }
 
     if (sexo == "") {
-      alert("Por favor ingrese su sexo.");
+      return toast.error("Por favor ingrese su sexo.");
     }
 
     axios
@@ -75,7 +75,6 @@ const EditarInformacion = () => {
         },
       })
       .then((response) => {
-        console.log(response);
         setDatos(response.data);
         setName(response.data.name);
         setSurname(response.data.surname);
@@ -113,7 +112,7 @@ const EditarInformacion = () => {
               id="form-login"
               className="container-fluid justify-content-center align-items-center p-0 m-0"
             >
-              <form onSubmit={editarInformacion}>
+              <form>
                 <div className="mb-3">
                   <label htmlFor="user-name" className="form-label">
                     Nombre
@@ -194,7 +193,11 @@ const EditarInformacion = () => {
                 </div>
 
                 <div className="mt-5 d-flex flex-column align-items-center justify-content-center">
-                  <button type="submit" className="btn btn-danger">
+                  <button
+                    type="submit"
+                    className="btn btn-danger"
+                    onClick={(e) => editarInformacion(e)}
+                  >
                     Editar información
                   </button>
                 </div>

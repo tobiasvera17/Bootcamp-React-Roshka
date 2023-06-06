@@ -2,13 +2,14 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 
 const GenerarCertificado = () => {
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
   const [datos, setDatos] = useState(null);
-  const [fecha_donacion, setFecha_Donacion] = useState(null);
-  const [local_donacion, setLocal_Donacion] = useState(null);
+  const [fecha_donacion, setFecha_Donacion] = useState("");
+  const [local_donacion_id, setlocal_donacion_id] = useState("");
   let today = new Date().toISOString().slice(0, 10);
 
   useEffect(() => {
@@ -24,19 +25,19 @@ const GenerarCertificado = () => {
     event.preventDefault();
 
     if (fecha_donacion == "") {
-      return alert("Por favor ingrese una fecha de donación.");
+      return toast.error("Por favor ingrese una fecha de donación.");
     }
 
-    if (local_donacion == "") {
-      return alert("Por favor ingrese un local de donación.");
+    if (local_donacion_id == "") {
+      return toast.error("Por favor ingrese un local de donación.");
     }
 
     axios
       .post(
         "http://192.168.16.90:8000/api/certificados",
         {
-          fecha_donacion: fecha_donacion,
-          local_donacion_id: local_donacion,
+          fecha_donacion,
+          local_donacion_id,
         },
         {
           headers: {
@@ -47,15 +48,13 @@ const GenerarCertificado = () => {
       .then((response) => {
         console.log(response.data);
         if (response.data.status == true) {
-          alert("Certificado generado correctamente.");
+          toast.success("Certificado generado correctamente.");
           navigate("/certificados");
-        } else {
-          alert("No se pudo generar el certificado\n" + response.data.message);
         }
       })
       .catch((error) => {
         console.log(error);
-        alert(error.response.data.message);
+        toast.error(error.response.data.message);
       });
   };
 
@@ -95,16 +94,18 @@ const GenerarCertificado = () => {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="local_donacion" className="form-label">
+                  <label htmlFor="local_donacion_id" className="form-label">
                     Centro de donación:
                   </label>
                   <select
-                    id="local_donacion"
+                    id="local_donacion_id"
                     className="form-select"
-                    onChange={(e) => setLocal_Donacion(e.target.value)}
+                    onChange={(e) => setlocal_donacion_id(e.target.value)}
                     required
                   >
-                    <option value="">Seleccione una opción</option>
+                    <option value="" disabled>
+                      Seleccione una opción
+                    </option>
                     {datos.map((item) => {
                       return (
                         <option key={item.id} value={item.id}>

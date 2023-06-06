@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 
 const CambiarPassword = () => {
   const navigate = useNavigate();
@@ -18,23 +19,25 @@ const CambiarPassword = () => {
     event.preventDefault();
 
     if (old_password == "") {
-      return alert("Por favor ingrese su contraseña.");
+      return toast.error("Por favor ingrese su contraseña.");
     }
 
     if (password == "") {
-      return alert("Por favor ingrese su nueva contraseña.");
+      return toast.error("Por favor ingrese su nueva contraseña.");
     }
 
     if (password != password_confirmation) {
-      return alert("Las contraseña nueva no coincide con la confirmación.");
+      return toast.error(
+        "Las contraseña nueva no coincide con la confirmación."
+      );
     }
 
     axios
       .post(
         "http://192.168.16.90:8000/api/cambiar-password/",
         {
-          old_password: old_password,
-          password: password,
+          old_password,
+          password,
         },
         {
           headers: {
@@ -44,15 +47,13 @@ const CambiarPassword = () => {
       )
       .then((response) => {
         if (response.data.status == true) {
-          alert(response.data.message);
+          toast.success(response.data.message);
           navigate("/perfil");
-        } else {
-          alert(response.data.message);
         }
       })
       .catch((error) => {
         // console.log(error)
-        alert(error.response.data.message);
+        toast.error(error.response.data.message);
       });
   };
 
