@@ -9,7 +9,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [togglePassword, setTogglePassword] = useState(false);
-  const tokenRedux = useSelector((state) => state.token);
 
   const login = (event) => {
     event.preventDefault();
