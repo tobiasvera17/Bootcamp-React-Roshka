@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [togglePassword, setTogglePassword] = useState(false);
+  const tokenRedux = useSelector((state) => state.token);
 
   const login = (event) => {
     event.preventDefault();
@@ -26,7 +29,8 @@ const Login = () => {
       })
       .then((response) => {
         if (response.data.status == true) {
-          localStorage.setItem("token", response.data.token);
+          // localStorage.setItem("token", response.data.token);
+          dispatch({ type: "setToken", payload: response.data.token });
           navigate("/perfil");
         } else {
           alert(response.data.message);
