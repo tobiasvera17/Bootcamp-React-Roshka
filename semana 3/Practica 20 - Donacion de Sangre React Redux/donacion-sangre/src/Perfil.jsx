@@ -1,13 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 const Perfil = () => {
-  const [datos, setDatos] = useState(null);
   const navigate = useNavigate();
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  const [datos, setDatos] = useState(null);
+  const token = useSelector((state) => state.token);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
     axios
       .get("http://192.168.16.90:8000/api/user/", {
         headers: {
@@ -24,7 +26,8 @@ const Perfil = () => {
 
   const cerrarSesion = () => {
     if (confirm("Desea cerrar su sesión?")) {
-      localStorage.removeItem("token");
+      // localStorage.removeItem("token");
+      dispatch({type: 'nullToken'})
       navigate("/login");
     }
   };
