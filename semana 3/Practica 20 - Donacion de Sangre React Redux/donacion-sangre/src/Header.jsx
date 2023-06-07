@@ -1,7 +1,8 @@
 import "./style-components.css";
 import { NavLink } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 const Header = () => {
+  const token = useSelector((state) => state.token);
   const links = [
     { title: "Mapa", href: "/mapa" },
     { title: "Solicitudes", href: "/solicitudes" },
@@ -32,11 +33,38 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <div></div>
             <div className="navbar-nav ms-auto mb-2 mb-lg-0">
-              {links.map((link, index) => (
-                <NavLink className="nav-link" key={index} to={link.href}>
-                  {link.title}
-                </NavLink>
-              ))}
+              {links.map((link, index) => {
+                if (
+                  (link.title == "Perfil" || link.title == "Certificados") &&
+                  token == null
+                ) {
+                  return (
+                    <NavLink
+                      className="nav-link disabled"
+                      key={index}
+                      to={link.href}
+                    >
+                      {link.title}
+                    </NavLink>
+                  );
+                } else if (link.title == "Login" && token != null) {
+                  return (
+                    <NavLink
+                      className="nav-link disabled"
+                      key={index}
+                      to={link.href}
+                    >
+                      {link.title}
+                    </NavLink>
+                  );
+                } else {
+                  return (
+                    <NavLink className="nav-link" key={index} to={link.href}>
+                      {link.title}
+                    </NavLink>
+                  );
+                }
+              })}
             </div>
           </div>
         </div>
