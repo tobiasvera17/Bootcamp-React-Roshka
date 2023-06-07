@@ -1,0 +1,8 @@
+¿Qué hace el componente UserProfile?
+El componente trae datos de una API que luego es impresa en la pantalla. Mientras no haya datos, se imprime el mensaje "Cargando usuario...".
+
+¿Qué hace el componente Counter?
+Imprime el valor del estado "count" en pantalla, junto a dos botones, uno para sumarle 1 al valor de count y otro para restarle 1 al valor de count. Cuando se presiona alguno de los dos botones, estos van a actualizar el valor de count respectivamente.
+
+¿Qué hace el componente UserProfile?
+Hace lo mismo que el primer componente pero utilizando un contexto.
