@@ -65,6 +65,7 @@ function Info(props) {
                     "btn btn-link btn-sm btn-delete btn-delete-" +
                     String(props.idContainer)
               }
+              disabled
             >
               <i className="bi bi-trash3-fill icon"></i>
             </button>
