@@ -58,7 +58,16 @@ const InfoLocal = (props) => {
             </a>
           </div>
           <div className="col">
-            <a href="#" className="link link-danger">
+            <a
+              href="#"
+              className="link link-danger"
+              onClick={() =>
+                props.setLatlng({
+                  lat: props.data.latitud,
+                  lng: props.data.longitud,
+                })
+              }
+            >
               Ir
             </a>
           </div>
