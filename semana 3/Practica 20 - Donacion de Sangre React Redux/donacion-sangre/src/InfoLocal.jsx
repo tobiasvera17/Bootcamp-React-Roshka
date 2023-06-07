@@ -43,8 +43,18 @@ const InfoLocal = (props) => {
 
         <div className="footer-info-container container-fluid fw-bold d-flex align-items-center justify-content-center text-center">
           <div className="col">
-            <a href="#" className="link link-danger">
-              Ver más
+            <a
+              href={
+                "https://www.google.com/maps/search/?api=1&query=" +
+                props.data.latitud +
+                "%2C" +
+                props.data.longitud
+              }
+              target="_blank"
+              rel="noreferrer"
+              className="link link-danger"
+            >
+              Ver en Maps
             </a>
           </div>
           <div className="col">
