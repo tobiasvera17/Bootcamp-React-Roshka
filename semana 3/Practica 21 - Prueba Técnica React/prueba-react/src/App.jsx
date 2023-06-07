@@ -22,6 +22,9 @@ function App() {
   console.log(charactersData);
   return (
     <>
+    <div className="container text-center">
+      <h1>Prueba Técnica React</h1>
+    </div>
       <div className="container mt-5 mb-5">
         <div className="row">
           <div className="col-1"></div>
