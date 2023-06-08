@@ -29,9 +29,9 @@ function App() {
             <div className="col-1"></div>
             <div className="col-10">
               <div className="row">
-              {results && (
-                <Cards results={results} />
-               )}
+              {/* {results && ( */}
+                <CardsDos results={results} />
+               {/* )} */}
               </div>
             </div>
             <div className="col-1"></div>
