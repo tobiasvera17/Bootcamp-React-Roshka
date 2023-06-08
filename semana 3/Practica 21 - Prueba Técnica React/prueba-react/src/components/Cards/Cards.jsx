@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react";
 
-const Cards = ({ results }) => {
-  const [charactersList, setCharactersList] = useState(results);
 
-  // useEffect(() => {
-  //     setCharactersList(results);
-  //     console.log(charactersList)
-  //   }, []);
+const Cards = ({ currentData, charactersData, setCharactersData }) => {
 
   const deleteCard = (id) => {
-    const result = charactersList.filter(character => character.id != id);
-    setCharactersList(result);
-}
+    const result = charactersData.filter((character) => character.id != id);
+    setCharactersData(result);
+  };
 
   return (
     <>
-      {charactersList && (
-        charactersList.map((item) => {
+      {currentData &&
+        currentData.map((item) => {
           let { id, image, name, species, gender, origin, location, status } =
             item;
           return (
@@ -67,8 +61,7 @@ const Cards = ({ results }) => {
               </div>
             </div>
           );
-        })
-        )}
+        })}
     </>
   );
 };
