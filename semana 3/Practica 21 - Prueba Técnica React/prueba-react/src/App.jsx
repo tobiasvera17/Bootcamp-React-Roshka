@@ -3,6 +3,7 @@ import Cards from "./components/Cards/Cards";
 import Pagination from "./components/Pagination/Pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
+
 import axios from "axios";
 
 function App() {
@@ -13,17 +14,16 @@ function App() {
 
   // Pagination
   const itemsPerPage = 6;
-  const [itemOffSet, setItemOffSet] = useState(0);// Inicio
-  const [endOffSet, setEndOffSet] = useState(itemOffSet + itemsPerPage);// Fin
-  
+  const [itemOffSet, setItemOffSet] = useState(0); // Inicio
+  const [endOffSet, setEndOffSet] = useState(itemOffSet + itemsPerPage); // Fin
+
   useEffect(() => {
     // console.log(itemOffSet, endOffSet)
     if (charactersData) {
       const current = charactersData?.slice(itemOffSet, endOffSet);
       setCurrentData(current);
     }
-  }, [itemOffSet,endOffSet, charactersData]);
-
+  }, [itemOffSet, endOffSet, charactersData]);
 
   useEffect(() => {
     if (charactersData == null) {
@@ -48,7 +48,13 @@ function App() {
           <div className="col-10">
             {/* <div className="row">{charactersData?.results && <Cards results={charactersData?.results} />}</div> */}
             <div className="row">
-              {currentData && <Cards currentData={currentData} charactersData={charactersData} setCharactersData={setCharactersData} />}
+              {currentData && (
+                <Cards
+                  currentData={currentData}
+                  charactersData={charactersData}
+                  setCharactersData={setCharactersData}
+                />
+              )}
             </div>
           </div>
           <div className="col-1"></div>
