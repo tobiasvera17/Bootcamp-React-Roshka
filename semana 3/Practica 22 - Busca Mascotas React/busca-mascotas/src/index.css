@@ -8,14 +8,6 @@
   -webkit-text-size-adjust: 100%;
 }
 
-.header-icon:hover {
-  color: #65cad5;
-}
-
-.header-icon:focus {
-  color: #65cad5;
-}
-
 .box-index-0 {
   background-color: #c0e4eb;
   display: flex;

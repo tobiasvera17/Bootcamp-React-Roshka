@@ -1,16 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import HomeIcon from '@mui/icons-material/Home';
-import PetsIcon from '@mui/icons-material/Pets';
-import SearchIcon from '@mui/icons-material/Search';
-import HandshakeIcon from '@mui/icons-material/Handshake';
-
+import HomeIcon from "@mui/icons-material/Home";
+import PetsIcon from "@mui/icons-material/Pets";
+import SearchIcon from "@mui/icons-material/Search";
+import HandshakeIcon from "@mui/icons-material/Handshake";
+import "./styles/header.css";
 const Header = () => {
+  const [overNavLink, setOverNavLink] = useState(0);
+  const [activeNavLink, setActiveNavLink] = useState(0);
+
   const links = [
-    { title: "Home", href: "/index", icon: <HomeIcon className="header-icon"/> },
-    { title: "Publicar", href: "/publicar", icon: <PetsIcon className="header-icon"/>},
-    { title: "Buscar Mascota", href: "/mapa", icon: <SearchIcon className="header-icon"/> },
-    { title: "Colaborar", href: "/colaborar", icon: <HandshakeIcon className="header-icon"/> },
+    {
+      title: "Home",
+      href: "/index",
+      icon: (
+        <HomeIcon
+          className={`header-icon ${
+            overNavLink === 0 ? "header-icon-active" : ""
+          } ${activeNavLink === 0 ? "header-icon-active" : ""}`}
+        />
+      ),
+    },
+    {
+      title: "Publicar",
+      href: "/publicar",
+      icon: (
+        <PetsIcon
+          className={`header-icon ${
+            overNavLink === 1 ? "header-icon-active" : ""
+          } ${activeNavLink === 1 ? "header-icon-active" : ""}`}
+        />
+      ),
+    },
+    {
+      title: "Buscar Mascota",
+      href: "/mapa",
+      icon: (
+        <SearchIcon
+          className={`header-icon ${
+            overNavLink === 2 ? "header-icon-active" : ""
+          } ${activeNavLink === 2 ? "header-icon-active" : ""}`}
+        />
+      ),
+    },
+    {
+      title: "Colaborar",
+      href: "/colaborar",
+      icon: (
+        <HandshakeIcon
+          className={`header-icon ${
+            overNavLink === 3 ? "header-icon-active" : ""
+          } ${activeNavLink === 3 ? "header-icon-active" : ""}`}
+        />
+      ),
+    },
   ];
 
   return (
@@ -42,7 +85,14 @@ const Header = () => {
         >
           <div className="navbar-nav gap-5">
             {links.map((link, index) => (
-              <NavLink className="nav-link fs-5" key={index} to={link.href}>
+              <NavLink
+                className="nav-link fs-5 navlink"
+                key={index}
+                to={link.href}
+                onMouseEnter={() => setOverNavLink(index)}
+                onMouseLeave={() => setOverNavLink(activeNavLink)}
+                onClick={() => setActiveNavLink(index)}
+              >
                 {link.icon}
                 {link.title}
               </NavLink>
