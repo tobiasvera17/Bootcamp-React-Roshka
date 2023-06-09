@@ -1,39 +1,119 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-
+  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+} */
+
+body,html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
-.box-index-0 {
-  background-color: #c0e4eb;
+.img-full {
+  background-color: #c0e4eb
+}
+
+
+.amarillo {
+  background-color: #ffd933;
+}
+
+.celeste {
+  background-color: #65cad5
+}
+
+.bg-clear {
+  background-color: #ecf4f585
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .5rem;
+  font-family: "Noto Sans JP",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 200;
+  line-height: 0.2;
+}
+
+#mainNav {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-family: "Noto Sans JP",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 700
+}
+
+#navbar-primary.navbar-default {
+  background: 0 0;
+  border: none
+}
+
+.footer {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: #60bfc9;
+  color: #fff
+}
+
+.copyright {
+  background-color: #fff
+}
+
+.nav-icon:hover .fas {
+  color: #65cad5
+}
+
+
+.img-donate {
+  height: 500px;
+  background-image: url(../public/static/app/img/closeup-shot-of-the-snouts-of-cute-dog-and-cat-sitting-cheek-to-cheek.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover
+}
+
+ul li {
+  padding: 5px 0 5px 0
+}
+
+#reportImage {
+  width: 60%;
+  object-fit: cover;
+  height: 60%
+}
+
+.flex {
   display: flex;
-  height: 600px;
+  flex-direction: column
 }
 
-.left-box-index-0 {
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  width: 50%;
+.flex>#divMapListView {
+  order: 1
 }
 
-.left-box-index-0 img {
-  max-width: 500px;
-  max-height: 500px;
+.flex>#divListView {
+  order: 2
 }
 
-.right-box-index-0 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.list-report {
+  width: 100%;
+  height: auto
 }
 
-.text-right-box-index-0 {
-  background-color: #d7ecf0;
-  text-align: center;
+.map {
+  position: relative;
+  display: inline-block
+}
+
+#map {
+  width: 100%;
+  height: 650px
+}
+
+#map-report {
+  height: 400px
 }
