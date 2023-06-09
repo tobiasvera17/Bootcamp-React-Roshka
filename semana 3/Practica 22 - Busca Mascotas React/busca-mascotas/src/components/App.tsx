@@ -5,7 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 
 import Header from './Header'
-
+import Footer from './Footer';
+import Copyright from './Copyright';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,6 +17,8 @@ function App() {
       <div className='container-fluid p-0 m-0'>
         <Outlet />
       </div>
+      <Footer/>
+      <Copyright/>
     </div>
   )
 }

@@ -8,6 +8,7 @@ import Index from './components/Index.tsx';
 import Mapa from './components/Mapa.tsx';
 import Publicar from './components/Publicar.tsx';
 import Colaborar from './components/Colaborar.tsx';
+import Terminos from './components/Terminos.tsx';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "mapa", element: <Mapa /> },
       { path: "publicar", element: <Publicar /> },
       { path: "colaborar", element: <Colaborar /> },
+      { path: "terminos", element: <Terminos /> },
     ],
   },
 ]);
