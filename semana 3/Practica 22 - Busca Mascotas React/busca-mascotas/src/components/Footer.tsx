@@ -3,6 +3,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailIcon from '@mui/icons-material/Email';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
 
 const Footer = () => {
  
@@ -19,8 +21,8 @@ const Footer = () => {
             {/* Footer Términos */}
             <div className="col-lg-4 mb-5">
                 <nav className="flex flex-column">
-                    <Link to={"/terminos"} className="btn btn-light mx-1 mb-1">Términos de uso <i className="fas fa-scroll"></i></Link>
-                    <a className="btn btn-light mx-1" href="https://github.com/OscarGonzalez97/BuscaMascota" target="_blank">Código fuente aquí <i className="fab fa-github"></i></a>
+                    <Link to={"/terminos"} className="btn btn-light mx-1 mb-1">Términos de uso <HistoryEduIcon fontSize="small"/></Link>
+                    <a className="btn btn-light mx-1" href="https://github.com/OscarGonzalez97/BuscaMascota" target="_blank">Código fuente aquí <GitHubIcon fontSize="small"/></a>
                 </nav>   
              </div>
             {/* Footer Social Icons */}

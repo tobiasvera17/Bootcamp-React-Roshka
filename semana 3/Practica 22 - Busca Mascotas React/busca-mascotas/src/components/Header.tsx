@@ -1,34 +1,29 @@
-import React, { useState } from "react";
+import { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import PetsIcon from "@mui/icons-material/Pets";
 import SearchIcon from "@mui/icons-material/Search";
 import HandshakeIcon from "@mui/icons-material/Handshake";
-import "./styles/header.css";
-const Header = () => {
-  const [overNavLink, setOverNavLink] = useState(0);
-  const [activeNavLink, setActiveNavLink] = useState(0);
+import "./styles/header-component.css";
 
+const Header = () => {
+  const [activePage, setActivePage] = useState(0)
   const links = [
     {
       title: "Home",
       href: "/index",
       icon: (
         <HomeIcon
-          className={`header-icon ${
-            overNavLink === 0 ? "header-icon-active" : ""
-          } ${activeNavLink === 0 ? "header-icon-active" : ""}`}
+          className={`header-icon ${activePage === 0 ? 'header-icon-active' : ''}`}
         />
       ),
     },
     {
-      title: "Publicar",
+      title: "Publicar Mascota",
       href: "/publicar",
       icon: (
         <PetsIcon
-          className={`header-icon ${
-            overNavLink === 1 ? "header-icon-active" : ""
-          } ${activeNavLink === 1 ? "header-icon-active" : ""}`}
+        className={`header-icon ${activePage === 1 ? 'header-icon-active' : ''}`}
         />
       ),
     },
@@ -37,9 +32,7 @@ const Header = () => {
       href: "/mapa",
       icon: (
         <SearchIcon
-          className={`header-icon ${
-            overNavLink === 2 ? "header-icon-active" : ""
-          } ${activeNavLink === 2 ? "header-icon-active" : ""}`}
+        className={`header-icon ${activePage === 2 ? 'header-icon-active' : ''}`}
         />
       ),
     },
@@ -48,9 +41,7 @@ const Header = () => {
       href: "/colaborar",
       icon: (
         <HandshakeIcon
-          className={`header-icon ${
-            overNavLink === 3 ? "header-icon-active" : ""
-          } ${activeNavLink === 3 ? "header-icon-active" : ""}`}
+        className={`header-icon ${activePage === 3 ? 'header-icon-active' : ''}`}
         />
       ),
     },
@@ -86,12 +77,10 @@ const Header = () => {
           <div className="navbar-nav gap-5">
             {links.map((link, index) => (
               <NavLink
-                className="nav-link fs-5 navlink"
+                className="nav-link fs-5 navlink d-flex align-items-center"
                 key={index}
                 to={link.href}
-                onMouseEnter={() => setOverNavLink(index)}
-                onMouseLeave={() => setOverNavLink(activeNavLink)}
-                onClick={() => setActiveNavLink(index)}
+                onClick={()=>setActivePage(index)}
               >
                 {link.icon}
                 {link.title}

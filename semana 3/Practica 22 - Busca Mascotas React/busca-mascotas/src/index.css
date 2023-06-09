@@ -16,10 +16,13 @@ body,html {
   overflow-x: hidden;
 }
 
+.header-icon-active {
+  color: #65cad5;
+}
+
 .img-full {
   background-color: #c0e4eb
 }
-
 
 .amarillo {
   background-color: #ffd933;
@@ -33,32 +36,31 @@ body,html {
   background-color: #ecf4f585
 }
 
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+/* .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   font-family: "Noto Sans JP",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   font-weight: 200;
   line-height: 0.2;
-}
-/* 
-#mainNav {
+} */
+
+/* #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
   font-family: "Noto Sans JP",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   font-weight: 700
-}
+} */
 
-#navbar-primary.navbar-default {
+/* #navbar-primary.navbar-default {
   background: 0 0;
   border: none
-}
-
-.nav-icon:hover .fas {
-  color: #65cad5
 } */
+
+.nav-link:hover .header-icon {
+  color: #65cad5
+}
 
 .footer {
   padding-top: 5rem;
-  padding-bottom: 5rem;
   background-color: #60bfc9;
   color: #fff
 }

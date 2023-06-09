@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Index = () => {
   return (
     <div className="container-fluid p-0 m-0 index-component-container">
@@ -86,20 +88,30 @@ const Index = () => {
         </div>
       </section>
       <section className="page-section bg-secondary text-white mb-0">
-    <div className="img-donate">
-        <div className="row pt-5">
-            <div className="col-lg-6 ml-auto pt-5" style={{"marginTop": "40px"}}>        
-                <h4 className="page-section-heading text-center text-light">Puedes colaborar <br/> para que este sitio siga activo <br/> y funcionando siempre <br/> 
-                    <a className="btn btn-info btn-lg mt-2 text-white" href="/colaborar/">
-                        Colaborar
-                    </a>
-                </h4>
+        <div className="img-donate">
+          <div className="row pt-5">
+            <div
+              className="col-lg-6 ml-auto pt-5"
+              style={{ marginTop: "40px" }}
+            >
+              <h4 className="page-section-heading text-center text-light">
+                Puedes colaborar <br /> para que este sitio siga activo <br /> y
+                funcionando siempre <br />
+                <Link
+                  to={"colaborar"}
+                  className="btn btn-info btn-lg mt-2 text-white"
+                >
+                  Colaborar
+                </Link>
+              </h4>
             </div>
-            <div className="col-lg-4 ml-auto py-5 text-center" style={{"marginTop": "40px"}}>        
-            </div>
+            <div
+              className="col-lg-6 ml-auto py-5 text-center"
+              style={{ marginTop: "40px" }}
+            ></div>
+          </div>
         </div>
-    </div>
-</section>
+      </section>
     </div>
   );
 };
