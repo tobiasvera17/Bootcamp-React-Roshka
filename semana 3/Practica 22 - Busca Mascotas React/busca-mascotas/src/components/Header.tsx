@@ -4,7 +4,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import PetsIcon from "@mui/icons-material/Pets";
 import SearchIcon from "@mui/icons-material/Search";
 import HandshakeIcon from "@mui/icons-material/Handshake";
-import "./styles/header-component.css";
 
 const Header = () => {
   const [activePage, setActivePage] = useState(0)
