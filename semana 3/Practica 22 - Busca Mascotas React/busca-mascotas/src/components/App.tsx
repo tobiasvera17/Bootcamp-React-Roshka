@@ -6,10 +6,13 @@ import "bootstrap/dist/js/bootstrap";
 import Header from './Header'
 import Footer from './Footer';
 import Copyright from './Copyright';
+import { Toaster } from "react-hot-toast";
 
 function App() {
 
   return (
+    <>
+    <div><Toaster/></div>
     <div className='container-fluid p-0 m-0'>
       <Header/>
       <div className='container-fluid p-0 m-0'>
@@ -18,6 +21,7 @@ function App() {
       <Footer/>
       <Copyright/>
     </div>
+    </>
   )
 }
 
