@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import PetsIcon from "@mui/icons-material/Pets";
@@ -6,14 +6,16 @@ import SearchIcon from "@mui/icons-material/Search";
 import HandshakeIcon from "@mui/icons-material/Handshake";
 
 const Header = () => {
-  const [activePage, setActivePage] = useState(0)
+  const [activePage, setActivePage] = useState(0);
   const links = [
     {
       title: "Home",
       href: "/index",
       icon: (
         <HomeIcon
-          className={`header-icon ${activePage === 0 ? 'header-icon-active' : ''}`}
+          className={`header-icon ${
+            activePage === 0 ? "header-icon-active" : ""
+          }`}
         />
       ),
     },
@@ -22,7 +24,9 @@ const Header = () => {
       href: "/publicar",
       icon: (
         <PetsIcon
-        className={`header-icon ${activePage === 1 ? 'header-icon-active' : ''}`}
+          className={`header-icon ${
+            activePage === 1 ? "header-icon-active" : ""
+          }`}
         />
       ),
     },
@@ -31,7 +35,9 @@ const Header = () => {
       href: "/mapa",
       icon: (
         <SearchIcon
-        className={`header-icon ${activePage === 2 ? 'header-icon-active' : ''}`}
+          className={`header-icon ${
+            activePage === 2 ? "header-icon-active" : ""
+          }`}
         />
       ),
     },
@@ -40,7 +46,9 @@ const Header = () => {
       href: "/colaborar",
       icon: (
         <HandshakeIcon
-        className={`header-icon ${activePage === 3 ? 'header-icon-active' : ''}`}
+          className={`header-icon ${
+            activePage === 3 ? "header-icon-active" : ""
+          }`}
         />
       ),
     },
@@ -76,13 +84,15 @@ const Header = () => {
           <div className="navbar-nav gap-5">
             {links.map((link, index) => (
               <NavLink
-                className="nav-link fs-5 navlink d-flex align-items-center"
                 key={index}
                 to={link.href}
-                onClick={()=>setActivePage(index)}
+                className="nav-link navlink d-flex align-items-center"
+                onClick={() => setActivePage(index)}
               >
-                {link.icon}
-                {link.title}
+                <h4>
+                  {link.icon}
+                  {link.title}
+                </h4>
               </NavLink>
             ))}
           </div>

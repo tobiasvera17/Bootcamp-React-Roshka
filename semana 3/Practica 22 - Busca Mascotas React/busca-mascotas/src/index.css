@@ -71,7 +71,7 @@ body,html {
 
 .img-donate {
   height: 500px;
-  background-image: url(../public/static/app/img/closeup-shot-of-the-snouts-of-cute-dog-and-cat-sitting-cheek-to-cheek.jpg);
+  background-image: url(../static/app/img/closeup-shot-of-the-snouts-of-cute-dog-and-cat-sitting-cheek-to-cheek.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover
