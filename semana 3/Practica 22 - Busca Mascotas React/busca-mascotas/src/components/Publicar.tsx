@@ -1,34 +1,45 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { toast } from "react-hot-toast/headless";
-
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import ClickMap from "./ClickMap";
+import axios from "axios";
 
 const Publicar = () => {
-  const [tipo_reporte, setTipo_Reporte] = useState("")
-  const [titulo_reporte, setTitulo_Reporte] = useState("")
-  const [descripcion_reporte, setDescripcion_Reporte] = useState("")
-  const [foto_reporte, setFoto_Reporte] = useState<FileList | null>(null)
-  const [nombre_contacto, setNombre_Contacto] = useState("")
-  const [telefono_contacto, setTelefono_Contacto] = useState("")
-  const [especie, setEspecie] = useState("")
-  const [edad_aproximada, setEdad_Aproximada] = useState("")
-  const [sexo, setSexo] = useState("")
-  const [resumen_ubicacion, setResumen_Ubicacion] = useState("")
-  const [ultima_vista, setUltima_Vista] = useState("")
-  
+  const [mousePos, setMousePos] = useState<LatLngTuple>({ lat: null, lng: null });
+  const [tipo_reporte, setTipo_Reporte] = useState("");
+  const [titulo_reporte, setTitulo_Reporte] = useState("");
+  const [descripcion_reporte, setDescripcion_Reporte] = useState("");
+  const [foto_reporte, setFoto_Reporte] = useState<FileList | null>(null);
+  const [nombre_contacto, setNombre_Contacto] = useState("");
+  const [telefono_contacto, setTelefono_Contacto] = useState("");
+  const [especie, setEspecie] = useState("");
+  const [edad_aproximada, setEdad_Aproximada] = useState("");
+  const [sexo, setSexo] = useState("");
+  const [resumen_ubicacion, setResumen_Ubicacion] = useState("");
+  const [ultima_vista, setUltima_Vista] = useState("");
+
   const submitFunction = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(tipo_reporte) 
-    console.log(titulo_reporte)
-    console.log(descripcion_reporte)
-    console.log(foto_reporte)
-    console.log(nombre_contacto)
-    console.log(telefono_contacto)
-    console.log(especie)
-    console.log(edad_aproximada)
-    console.log(sexo)
-    console.log(resumen_ubicacion)
-    console.log(ultima_vista)
+    e.preventDefault();
+    console.log(mousePos.lat, mousePos.lng)
+    let data;
+    axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${mousePos.lat}&lon=${mousePos.lng}`).then(response=>{
+      console.log(response)
+      if(response.status==200){
+        data = response.data.display_name.split(",")
+        console.log(data)
+      }
+    })
+    console.log(tipo_reporte);
+    console.log(titulo_reporte);
+    console.log(descripcion_reporte);
+    console.log(foto_reporte);
+    console.log(nombre_contacto);
+    console.log(telefono_contacto);
+    console.log(especie);
+    console.log(edad_aproximada);
+    console.log(sexo);
+    console.log(resumen_ubicacion);
+    console.log(ultima_vista);
   };
 
   return (
@@ -37,6 +48,40 @@ const Publicar = () => {
         <div className="col-lg-10">
           <form className="was-validated" onSubmit={(e) => submitFunction(e)}>
             <div className="form-group mb-3">
+              <label htmlFor="ubicacion_reporte" className="form-label fw-bold">
+                Elija ubicación o zona cercana donde vio la mascota por última
+                vez :
+              </label>
+              <div id="map-report">
+                <MapContainer
+                  center={[-23.579697370403817, -58.51567860437498]}
+                  zoom={6}
+                  scrollWheelZoom={false}
+                  id="ubicacion_reporte"
+                >
+                  <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  <ClickMap
+                    setMousePos={setMousePos}
+                    mousePos={mousePos}
+                  ></ClickMap>
+                  {
+                    mousePos.lat != null ? mousePos.lng != null ?
+                      (
+                        <Marker position={[mousePos.lat, mousePos.lng]}>
+                        <Popup>
+                          A pretty CSS3 popup. <br /> Easily customizable.  
+                        </Popup>
+                      </Marker>
+                      ) : null : null
+                  }
+                </MapContainer>
+              </div>
+            </div>
+
+            <div className="form-group mb-3">
               <label htmlFor="tipo_reporte" className="form-label fw-bold">
                 Tipo de reporte :
               </label>
@@ -44,7 +89,7 @@ const Publicar = () => {
                 className="form-select"
                 id="tipo_reporte"
                 aria-describedby="tipo_reporte_help"
-                onChange={(e)=>setTipo_Reporte(e.target.value)}
+                onChange={(e) => setTipo_Reporte(e.target.value)}
                 required
               >
                 <option value={"perdido"}>Perdido</option>
@@ -83,10 +128,12 @@ const Publicar = () => {
                 className="form-control"
                 id="titulo_reporte"
                 placeholder="Ejemplo: Perro con collar encontrado en el barrio San Vicente"
-                onChange={(e)=>setTitulo_Reporte(e.target.value)}
+                onChange={(e) => setTitulo_Reporte(e.target.value)}
                 required
               />
-              <div className="invalid-feedback">Debe completar este campo correctamente.</div>
+              <div className="invalid-feedback">
+                Debe completar este campo correctamente.
+              </div>
             </div>
 
             <div className="form-group mb-3">
@@ -101,10 +148,12 @@ const Publicar = () => {
                 rows={3}
                 id="descripcion_reporte"
                 placeholder="Ejemplo: Encontré un perro blanco con collar, creo que es una mezcla de caniche, parece asustado y no pude retenerlo."
-                onChange={(e)=>setDescripcion_Reporte(e.target.value)}
+                onChange={(e) => setDescripcion_Reporte(e.target.value)}
                 required
               ></textarea>
-              <div className="invalid-feedback">Debe completar este campo correctamente.</div>
+              <div className="invalid-feedback">
+                Debe completar este campo correctamente.
+              </div>
             </div>
 
             <div className="form-group mb-3">
@@ -116,10 +165,12 @@ const Publicar = () => {
                 accept="image/jpeg, image/jpg, image/png"
                 className="form-control"
                 id="foto_reporte"
-                onChange={(e)=>setFoto_Reporte(e.target.files)}
+                onChange={(e) => setFoto_Reporte(e.target.files)}
                 required
               />
-              <div className="invalid-feedback">Debe completar este campo correctamente.</div>
+              <div className="invalid-feedback">
+                Debe completar este campo correctamente.
+              </div>
               <div id="foto_reporte_help" className="form-text">
                 <span>
                   Se necesita una imagen de la mascota para evitar confusiones y
@@ -136,7 +187,7 @@ const Publicar = () => {
                 type="input"
                 className="form-control"
                 id="nombre_contacto"
-                onChange={(e)=>setNombre_Contacto(e.target.value)}
+                onChange={(e) => setNombre_Contacto(e.target.value)}
                 placeholder="Ejemplo: Franco Pecci"
               />
             </div>
@@ -149,7 +200,7 @@ const Publicar = () => {
                 type="input"
                 className="form-control"
                 id="telefono_contacto"
-                onChange={(e)=>setTelefono_Contacto(e.target.value)}
+                onChange={(e) => setTelefono_Contacto(e.target.value)}
                 placeholder="Ejemplo: +595990123456"
               />
             </div>
@@ -158,7 +209,12 @@ const Publicar = () => {
               <label htmlFor="especie" className="form-label fw-bold">
                 Especie :
               </label>
-              <select className="form-select" id="especie" onChange={(e)=>setEspecie(e.target.value)} required>
+              <select
+                className="form-select"
+                id="especie"
+                onChange={(e) => setEspecie(e.target.value)}
+                required
+              >
                 <option value={"perro"}>Perro</option>
                 <option value={"gato"}>Gato</option>
                 <option value={"loro"}>Loro</option>
@@ -174,7 +230,7 @@ const Publicar = () => {
                 type="number"
                 className="form-control"
                 id="edad_aproximada"
-                onChange={(e)=>setEdad_Aproximada(e.target.value)}
+                onChange={(e) => setEdad_Aproximada(e.target.value)}
               />
             </div>
 
@@ -182,7 +238,11 @@ const Publicar = () => {
               <label htmlFor="sexo" className="form-label fw-bold">
                 Sexo :
               </label>
-              <select className="form-select" id="sexo" onChange={(e)=>setSexo(e.target.value)}>
+              <select
+                className="form-select"
+                id="sexo"
+                onChange={(e) => setSexo(e.target.value)}
+              >
                 <option value={"macho"}>Macho</option>
                 <option value={"hembra"}>Hembra</option>
                 <option value={"desconocido"}>Desconocido</option>
@@ -198,10 +258,12 @@ const Publicar = () => {
                 className="form-control"
                 id="resumen_ubicacion"
                 placeholder="Ejemplo: Árboles, Paso de la Patria, Hipódromo, Asunción, Región Oriental, 1906, Paraguay"
-                onChange={(e)=>setResumen_Ubicacion(e.target.value)}
+                onChange={(e) => setResumen_Ubicacion(e.target.value)}
                 required
               />
-              <div className="invalid-feedback">Debe completar este campo correctamente.</div>
+              <div className="invalid-feedback">
+                Debe completar este campo correctamente.
+              </div>
             </div>
 
             <div className="form-group mb-3">
@@ -213,10 +275,12 @@ const Publicar = () => {
                 className="form-control"
                 id="ultima_vista"
                 max={new Date().toJSON().slice(0, 10)}
-                onChange={(e)=>setUltima_Vista(e.target.value)}
+                onChange={(e) => setUltima_Vista(e.target.value)}
                 required
               />
-              <div className="invalid-feedback">Debe completar este campo correctamente.</div>
+              <div className="invalid-feedback">
+                Debe completar este campo correctamente.
+              </div>
             </div>
 
             <div className="form-check mb-3">
