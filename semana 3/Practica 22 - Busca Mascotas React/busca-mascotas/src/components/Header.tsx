@@ -89,7 +89,7 @@ const Header = () => {
                 className="nav-link navlink d-flex align-items-center"
                 onClick={() => setActivePage(index)}
               >
-                <h4>
+                <h4 className="d-flex align-items-center gap-1">
                   {link.icon}
                   {link.title}
                 </h4>
