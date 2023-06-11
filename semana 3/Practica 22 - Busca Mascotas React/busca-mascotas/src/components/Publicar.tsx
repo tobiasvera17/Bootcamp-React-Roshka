@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import ClickMap from "./ClickMap";
-import axios from "axios";
 
 const Publicar = () => {
   const [mousePos, setMousePos] = useState<LatLngTuple>({ lat: null, lng: null });
@@ -21,14 +20,6 @@ const Publicar = () => {
   const submitFunction = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(mousePos.lat, mousePos.lng)
-    let data;
-    axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${mousePos.lat}&lon=${mousePos.lng}`).then(response=>{
-      console.log(response)
-      if(response.status==200){
-        data = response.data.display_name.split(",")
-        console.log(data)
-      }
-    })
     console.log(tipo_reporte);
     console.log(titulo_reporte);
     console.log(descripcion_reporte);
@@ -56,7 +47,7 @@ const Publicar = () => {
                 <MapContainer
                   center={[-23.579697370403817, -58.51567860437498]}
                   zoom={6}
-                  scrollWheelZoom={false}
+                  scrollWheelZoom={true}
                   id="ubicacion_reporte"
                 >
                   <TileLayer
@@ -66,6 +57,7 @@ const Publicar = () => {
                   <ClickMap
                     setMousePos={setMousePos}
                     mousePos={mousePos}
+                    setResumen_Ubicacion={setResumen_Ubicacion}
                   ></ClickMap>
                   {
                     mousePos.lat != null ? mousePos.lng != null ?
@@ -258,6 +250,7 @@ const Publicar = () => {
                 className="form-control"
                 id="resumen_ubicacion"
                 placeholder="Ejemplo: Árboles, Paso de la Patria, Hipódromo, Asunción, Región Oriental, 1906, Paraguay"
+                value={resumen_ubicacion != "" ? resumen_ubicacion : ''}
                 onChange={(e) => setResumen_Ubicacion(e.target.value)}
                 required
               />
