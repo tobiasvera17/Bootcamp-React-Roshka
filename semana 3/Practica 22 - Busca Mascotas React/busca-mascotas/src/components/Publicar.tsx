@@ -14,7 +14,7 @@ const Publicar = () => {
   const [especie, setEspecie] = useState("");
   const [edad_aproximada, setEdad_Aproximada] = useState("");
   const [sexo, setSexo] = useState("");
-  const [resumen_ubicacion, setResumen_Ubicacion] = useState("");
+  const [resumen_ubicacion, setResumen_Ubicacion] = useState<string | null>(null);
   const [ultima_vista, setUltima_Vista] = useState("");
 
   const submitFunction = (e: React.FormEvent<HTMLFormElement>) => {
@@ -56,7 +56,6 @@ const Publicar = () => {
                   />
                   <ClickMap
                     setMousePos={setMousePos}
-                    mousePos={mousePos}
                     setResumen_Ubicacion={setResumen_Ubicacion}
                   ></ClickMap>
                   {
@@ -64,7 +63,7 @@ const Publicar = () => {
                       (
                         <Marker position={[mousePos.lat, mousePos.lng]}>
                         <Popup>
-                          A pretty CSS3 popup. <br /> Easily customizable.  
+                          {resumen_ubicacion != null ? resumen_ubicacion : ''}
                         </Popup>
                       </Marker>
                       ) : null : null
@@ -250,7 +249,7 @@ const Publicar = () => {
                 className="form-control"
                 id="resumen_ubicacion"
                 placeholder="Ejemplo: Árboles, Paso de la Patria, Hipódromo, Asunción, Región Oriental, 1906, Paraguay"
-                value={resumen_ubicacion != "" ? resumen_ubicacion : ''}
+                value={resumen_ubicacion != null ? resumen_ubicacion : ''}
                 onChange={(e) => setResumen_Ubicacion(e.target.value)}
                 required
               />
