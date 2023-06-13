@@ -1,4 +1,4 @@
-import { Marker, Popup, useMapEvents } from "react-leaflet";
+import { useMapEvents } from "react-leaflet";
 import axios from "axios";
 
 const ClickMap = ({ setMousePos, setResumen_Ubicacion }) => {

@@ -2,20 +2,22 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import ClickMap from "./ClickMap";
+import { LatLngTuple } from "leaflet";
+import 'leaflet/dist/leaflet.css';
 
 const Publicar = () => {
-  const [mousePos, setMousePos] = useState<LatLngTuple>({ lat: null, lng: null });
-  const [tipo_reporte, setTipo_Reporte] = useState("");
-  const [titulo_reporte, setTitulo_Reporte] = useState("");
-  const [descripcion_reporte, setDescripcion_Reporte] = useState("");
+  const [mousePos, setMousePos] = useState<LatLngTuple | null>({ lat: null, lng: null });
+  const [tipo_reporte, setTipo_Reporte] = useState("perdido");
+  const [titulo_reporte, setTitulo_Reporte] = useState<string | null>(null);
+  const [descripcion_reporte, setDescripcion_Reporte] = useState<string | null>(null);
   const [foto_reporte, setFoto_Reporte] = useState<FileList | null>(null);
-  const [nombre_contacto, setNombre_Contacto] = useState("");
-  const [telefono_contacto, setTelefono_Contacto] = useState("");
-  const [especie, setEspecie] = useState("");
-  const [edad_aproximada, setEdad_Aproximada] = useState("");
-  const [sexo, setSexo] = useState("");
+  const [nombre_contacto, setNombre_Contacto] = useState<string | null>(null);
+  const [telefono_contacto, setTelefono_Contacto] = useState<string | null>(null);
+  const [especie, setEspecie] = useState("perro");
+  const [edad_aproximada, setEdad_Aproximada] = useState<string | null>(null);
+  const [sexo, setSexo] = useState("macho");
   const [resumen_ubicacion, setResumen_Ubicacion] = useState<string | null>(null);
-  const [ultima_vista, setUltima_Vista] = useState("");
+  const [ultima_vista, setUltima_Vista] = useState<string | null>(null);
 
   const submitFunction = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
