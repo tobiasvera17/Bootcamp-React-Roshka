@@ -3,25 +3,34 @@ import { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import ClickMap from "./ClickMap";
 import { LatLngTuple } from "leaflet";
-import 'leaflet/dist/leaflet.css';
+import "leaflet/dist/leaflet.css";
 
 const Publicar = () => {
-  const [mousePos, setMousePos] = useState<LatLngTuple | null>({ lat: null, lng: null });
+  const [mousePos, setMousePos] = useState<LatLngTuple | null>({
+    lat: null,
+    lng: null,
+  });
   const [tipo_reporte, setTipo_Reporte] = useState("perdido");
   const [titulo_reporte, setTitulo_Reporte] = useState<string | null>(null);
-  const [descripcion_reporte, setDescripcion_Reporte] = useState<string | null>(null);
+  const [descripcion_reporte, setDescripcion_Reporte] = useState<string | null>(
+    null
+  );
   const [foto_reporte, setFoto_Reporte] = useState<FileList | null>(null);
   const [nombre_contacto, setNombre_Contacto] = useState<string | null>(null);
-  const [telefono_contacto, setTelefono_Contacto] = useState<string | null>(null);
+  const [telefono_contacto, setTelefono_Contacto] = useState<string | null>(
+    null
+  );
   const [especie, setEspecie] = useState("perro");
   const [edad_aproximada, setEdad_Aproximada] = useState<string | null>(null);
   const [sexo, setSexo] = useState("macho");
-  const [resumen_ubicacion, setResumen_Ubicacion] = useState<string | null>(null);
+  const [resumen_ubicacion, setResumen_Ubicacion] = useState<string | null>(
+    null
+  );
   const [ultima_vista, setUltima_Vista] = useState<string | null>(null);
 
   const submitFunction = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(mousePos.lat, mousePos.lng)
+    console.log(mousePos.lat, mousePos.lng);
     console.log(tipo_reporte);
     console.log(titulo_reporte);
     console.log(descripcion_reporte);
@@ -60,16 +69,15 @@ const Publicar = () => {
                     setMousePos={setMousePos}
                     setResumen_Ubicacion={setResumen_Ubicacion}
                   ></ClickMap>
-                  {
-                    mousePos.lat != null ? mousePos.lng != null ?
-                      (
-                        <Marker position={[mousePos.lat, mousePos.lng]}>
+                  {mousePos.lat != null ? (
+                    mousePos.lng != null ? (
+                      <Marker position={[mousePos.lat, mousePos.lng]}>
                         <Popup>
-                          {resumen_ubicacion != null ? resumen_ubicacion : ''}
+                          {resumen_ubicacion != null ? resumen_ubicacion : ""}
                         </Popup>
                       </Marker>
-                      ) : null : null
-                  }
+                    ) : null
+                  ) : null}
                 </MapContainer>
               </div>
             </div>
@@ -251,7 +259,7 @@ const Publicar = () => {
                 className="form-control"
                 id="resumen_ubicacion"
                 placeholder="Ejemplo: Árboles, Paso de la Patria, Hipódromo, Asunción, Región Oriental, 1906, Paraguay"
-                value={resumen_ubicacion != null ? resumen_ubicacion : ''}
+                value={resumen_ubicacion != null ? resumen_ubicacion : ""}
                 onChange={(e) => setResumen_Ubicacion(e.target.value)}
                 required
               />
