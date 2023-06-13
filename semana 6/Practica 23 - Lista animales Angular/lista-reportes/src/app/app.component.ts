@@ -13,7 +13,7 @@ export class AppComponent {
       descripcion: 'caniche acostado',
       contacto: '123123123',
       pais: 'Paraguay',
-      link: 'www.youtube.com',
+      link: 'https://www.youtube.com/watch?v=5e7nLXWq1Ho&ab_channel=Znorux',
       visible: false
     },
     {
@@ -22,7 +22,7 @@ export class AppComponent {
       descripcion: 'Enrique Medina',
       contacto: '123123123',
       pais: 'Perú',
-      link: 'www.google.com',
+      link: 'https://www.youtube.com/watch?v=5e7nLXWq1Ho&ab_channel=Znorux',
       visible:true
     },
     {
@@ -31,7 +31,7 @@ export class AppComponent {
       descripcion: 'Enrique Medina',
       contacto: '123123123',
       pais: 'Perú',
-      link: 'www.google.com',
+      link: 'https://www.youtube.com/watch?v=5e7nLXWq1Ho&ab_channel=Znorux' ,
       visible:false
     },
     {
@@ -40,7 +40,7 @@ export class AppComponent {
       descripcion: 'Achu Ramírez',
       contacto: '123123123',
       pais: 'Bolivia',
-      link: 'www.google.com',
+      link: 'https://www.youtube.com/watch?v=5e7nLXWq1Ho&ab_channel=Znorux' ,
       visible: true
     },
     {
@@ -49,7 +49,7 @@ export class AppComponent {
       descripcion: 'Achu Ramírez',
       contacto: '123123123',
       pais: 'Bolivia',
-      link: 'www.google.com',
+      link: 'https://www.youtube.com/watch?v=5e7nLXWq1Ho&ab_channel=Znorux' ,
       visible: false
     },
     {
@@ -58,8 +58,12 @@ export class AppComponent {
       descripcion: 'caniche acostado',
       contacto: '123123123',
       pais: 'Paraguay',
-      link: 'www.youtube.com',
+      link: 'https://www.youtube.com/watch?v=5e7nLXWq1Ho&ab_channel=Znorux',
       visible: true
     },
   ];
+
+  sayMessage = () => {
+    alert("Va a salir de la aplicación")
+  }
 }
