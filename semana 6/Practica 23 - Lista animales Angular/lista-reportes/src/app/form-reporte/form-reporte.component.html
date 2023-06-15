@@ -1,0 +1,161 @@
+<div class="row justify-content-center align-items-center">
+  <div class="col-lg-6">
+    <h3 class="text-center">Agregar Reporte</h3>
+
+    <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)" class="form">
+      <div class="my-3">
+        <label for="title" class="form-label fw-bold">Titulo:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="title"
+          name="title"
+          [(ngModel)]="formData.title"
+          required
+          maxlength="13"
+        />
+        <div
+          *ngIf="
+            myForm.controls.title.invalid &&
+            (myForm.controls.title.dirty || myForm.controls.title.touched)
+          "
+        >
+          <div *ngIf="myForm.controls.title.errors?.['required']">
+            El título es requerido.
+          </div>
+          <div *ngIf="myForm.controls.title.errors?.['maxlength']">
+            El título puede tener como máximo 13 caracteres.
+          </div>
+        </div>
+      </div>
+
+      <div class="my-3">
+        <label for="ultima_vista" class="form-label fw-bold"
+          >Últ. vez visto:</label
+        >
+        <input
+          class="form-control"
+          type="date"
+          id="ultima_vista"
+          name="ultima_vista"
+          [(ngModel)]="formData.ultima_vista"
+          required
+          max="{{ today }}"
+        />
+        <div
+          *ngIf="
+            myForm.controls.ultima_vista.invalid &&
+            (myForm.controls.ultima_vista.dirty ||
+              myForm.controls.ultima_vista.touched)
+          "
+        >
+          <div *ngIf="myForm.controls.ultima_vista.errors?.['required']">
+            La fecha es requerida.
+          </div>
+        </div>
+      </div>
+
+      <div class="my-3">
+        <label for="descripcion" class="form-label fw-bold">Descripción:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="descripcion"
+          name="descripcion"
+          [(ngModel)]="formData.descripcion"
+          required
+        />
+        <div
+          *ngIf="
+            myForm.controls.descripcion.invalid &&
+            (myForm.controls.descripcion.dirty || myForm.controls.descripcion.touched)
+          "
+        >
+          <div *ngIf="myForm.controls.descripcion.errors?.['required']">
+            La descripcion es requerida.
+          </div>
+        </div>
+      </div>
+
+      <div class="my-3">
+        <label for="contacto" class="form-label fw-bold">Contacto:</label>
+        <input
+          class="form-control"
+          type="number"
+          id="contacto"
+          name="contacto"
+          [(ngModel)]="formData.contacto"
+          required
+        />
+        <div
+          *ngIf="
+            myForm.controls.contacto.invalid &&
+            (myForm.controls.contacto.dirty || myForm.controls.contacto.touched)
+          "
+        >
+          <div *ngIf="myForm.controls.contacto.errors?.['required']">
+            El contacto es requerido.
+          </div>
+        </div>
+      </div>
+
+      <div class="my-3">
+        <label for="pais" class="form-label fw-bold">País:</label>
+        <select
+          class="form-select"
+          id="pais"
+          name="pais"
+          [(ngModel)]="formData.pais"
+          required
+        >
+          <option value="" disabled>Seleccione una opción</option>
+          <option value="paraguay">Paraguay</option>
+        </select>
+        <div
+          *ngIf="
+            myForm.controls.pais.invalid &&
+            (myForm.controls.pais.dirty || myForm.controls.pais.touched)
+          "
+        >
+          <div *ngIf="myForm.controls.pais.errors?.['required']">
+            El país es requerido.
+          </div>
+        </div>
+      </div>
+
+      <div class="my-3">
+        <label for="link" class="form-label fw-bold">URL del reporte:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="link"
+          name="link"
+          [(ngModel)]="formData.link"
+          required
+        />
+        <div
+          *ngIf="
+            (myForm.controls.link.dirty || myForm.controls.link.touched)
+          "
+        >
+          <div *ngIf="myForm.controls.link.errors?.['required']">
+            La URL es requerida.
+          </div>
+          <div *ngIf="!urlRegex.test(formData.link)">
+            Debe ingresar una URL válida.
+          </div>
+        </div>
+      </div>
+
+      <div class="justify-content-center align-items-center text-center">
+        <button
+          type="submit"
+          [disabled]="myForm.invalid"
+          class="btn btn-primary"
+        >
+          Publicar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

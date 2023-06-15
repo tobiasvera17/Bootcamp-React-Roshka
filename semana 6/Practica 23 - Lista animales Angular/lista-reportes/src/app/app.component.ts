@@ -62,8 +62,4 @@ export class AppComponent {
       visible: true
     },
   ];
-
-  sayMessage = () => {
-    alert("Va a salir de la aplicación")
-  }
 }

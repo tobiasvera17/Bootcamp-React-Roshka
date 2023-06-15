@@ -8,23 +8,7 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <div class="container-fluid">
-  <div class="row justify-content-center align-items-center">
-    <div class="col-lg-10" *ngFor="let reporte of reportes">
-      <div class="row mt-5 align-items-center justify-content-center shadow p-5" *ngIf="reporte.visible">
-        <div class="col-lg-2 align-items-start justify-content-start" style="height: 200px; width: 200px;">
-            <img src="https://masencarnacion.s3.us-west-2.amazonaws.com/uploads/public/629/62a/a25/62962aa254cf2383285091.jpg" class="rounded img-fluid" style="width: 200px; height: 200px;">
-        </div>
-        <div class="col-lg-8">
-          <h4 class="fw-bold text-primary">{{reporte.title}}</h4>
-          <h5 class="fw-bold">Últ. vez visto el {{reporte.ultima_vista}}</h5>
-          <p class="mb-2">{{reporte.descripcion}}</p>
-          <p class="mb-2">Contacto: {{reporte.contacto}}</p>
-          <p class="mb-5">{{reporte.pais}}</p>
-          <button class="btn btn-primary" (click)="sayMessage()"><a href={{reporte.link}} class="link-light">Ver reporte completo</a></button>
-        </div>
-      </div>
-    </div>
-  </div>
+ <app-card [reportes]="reportes"></app-card>
 </div>
 
 
