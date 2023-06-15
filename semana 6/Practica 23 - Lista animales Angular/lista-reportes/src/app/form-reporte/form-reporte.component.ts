@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./form-reporte.component.css'],
 })
 export class FormReporteComponent {
+  @Input() reportes:any
+
   formData = {
     title: '',
     ultima_vista: '',
@@ -23,9 +25,10 @@ export class FormReporteComponent {
 
   ngOnInit() {}
   submitForm(form: NgForm) {
+
     if (form.valid) {
       // Realizar acciones cuando el formulario es válido
-      console.log('Formulario válido');
+      this.reportes.push(this.formData)
     } else {
       // Mostrar mensajes de error o realizar acciones adicionales
       console.log('Formulario inválido');

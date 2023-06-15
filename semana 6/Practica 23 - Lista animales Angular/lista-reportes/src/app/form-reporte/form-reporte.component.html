@@ -40,7 +40,8 @@
           name="ultima_vista"
           [(ngModel)]="formData.ultima_vista"
           required
-          max="{{ today }}"
+          [max]="today"
+          onkeydown="return null"
         />
         <div
           *ngIf="
@@ -132,16 +133,17 @@
           name="link"
           [(ngModel)]="formData.link"
           required
+          [pattern]="urlRegex"
         />
         <div
-          *ngIf="
+          *ngIf="myForm.controls.ultima_vista.invalid &&
             (myForm.controls.link.dirty || myForm.controls.link.touched)
           "
         >
           <div *ngIf="myForm.controls.link.errors?.['required']">
             La URL es requerida.
           </div>
-          <div *ngIf="!urlRegex.test(formData.link)">
+          <div *ngIf="myForm.controls.link.errors?.['pattern']">
             Debe ingresar una URL válida.
           </div>
         </div>
